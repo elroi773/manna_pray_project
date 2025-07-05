@@ -1,28 +1,24 @@
-.post-list-wrapper {
-    max-width: 1000px;
-    margin: 40px auto;
-    padding: 0 16px;
-    text-align: center;
-  }
-  
-  .section-title {
-    font-size: 20px;
-    font-weight: bold;
-    text-align: left;
-    margin-bottom: 20px;
-  }
-  
-  .post-grid {
+.post-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 24px;
-    justify-content: center;
+    padding: 32px;
   }
   
-  .view-all {
-    margin-top: 24px;
-    font-size: 14px;
-    color: gray;
-    cursor: pointer;
+  /* 모바일에서는 가로 스크롤 */
+  @media (max-width: 768px) {
+    .post-list {
+      display: flex;
+      overflow-x: auto;
+      gap: 16px;
+      padding: 16px;
+      scroll-snap-type: x mandatory;
+    }
+  
+    .post-list > * {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      width: 280px;
+    }
   }
   
