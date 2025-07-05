@@ -38,4 +38,10 @@ img{
 
 .Top #chapter{
   font-size: 13px;
+  margin-bottom: 50px;
+}
+
+.prayTitle{
+  padding-left: 30px;
+  padding-top: 50px;
 }
