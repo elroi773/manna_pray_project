@@ -1,23 +1,20 @@
-import logo from './logo.svg';
+import logo from './logo.png';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="Top">
+      <img src={logo} className="App-logo" alt="logo" />
+      <div className='menu'>
+        <a href = "#">로그인</a>
+        &nbsp;|&nbsp;
+        <a href = "#">회원가입</a>
+      </div>
+      <p>
+        너희는 내게 부르짖으며 와서 내게 기도 하면 <br />
+              내가 너희를 들을 것이요 
+      </p>
+      <p id = "chapter">예레미야 29 : 12</p>
     </div>
   );
 }
