@@ -1,5 +1,6 @@
 import logo from './logo.png';
 import './App.css';
+import CategoryButtons from "./componets/CategoryButtons";
 
 function App() {
   return (
@@ -15,7 +16,12 @@ function App() {
               내가 너희를 들을 것이요 
       </p>
       <p id = "chapter">예레미야 29 : 12</p>
+      <CategoryButtons /> 
+      <div className="prayTitle">
+        <h2>인기 기도 제목</h2>
+      </div>  
     </div>
+   
   );
 }
 
