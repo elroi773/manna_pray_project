@@ -1,6 +1,8 @@
 import logo from './logo.png';
 import './App.css';
 import CategoryButtons from "./componets/CategoryButtons";
+import PostCard from "./componets/PostCard";
+import PostList from "./componets/PostList";
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
       <CategoryButtons /> 
       <div className="prayTitle">
         <h2>인기 기도 제목</h2>
+        <PostCard />
       </div>  
     </div>
    
