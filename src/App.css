@@ -63,12 +63,13 @@ img {
   img {
     width: 160px;
     margin-top: 10px;
-    margin-left: 10px;
+    margin-left: 1px;
   }
 
   .menu {
-    top: 15px;
+    top: 40px;
     right: 15px;
+    margin-right: 5px;
   }
 
   .menu a {
