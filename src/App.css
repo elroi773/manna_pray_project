@@ -1,12 +1,13 @@
 @font-face {
-  font-family: 'Pretendard-Regular';
-  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-family: "Pretendard-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
   font-weight: 400;
   font-style: normal;
 }
 
 * {
-  font-family: 'Pretendard-Regular';
+  font-family: "Pretendard-Regular";
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -33,7 +34,7 @@ img {
   font-size: 15px;
   text-decoration: none;
   color: black;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 .menu a:hover {
@@ -92,5 +93,108 @@ img {
 
   .prayTitle h2 {
     font-size: 18px;
+  }
+}
+
+:root {
+  --gap: 24px;
+  --radius: 20px;
+  --overlay: rgba(0, 0, 0, 0.45);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", "Noto Sans KR", sans-serif;
+  background: #fafafa;
+  color: #222;
+}
+
+.records-wrapper {
+  padding: 32px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 32px;
+}
+
+/* ───────── 기본(모바일) : 2열 그리드 ───────── */
+.records-grid {
+  display: flex;            /* flex로도 충분 */
+  flex-direction: column;   /* 세로 정렬 */
+  gap: var(--gap);
+}
+
+/* 카드 공통 스타일 */
+.card {
+  position: relative;
+  height: 280px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+}
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--overlay);
+}
+.card-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  color: #fff;
+  text-align: center;
+}
+.card-content h2 {
+  font-size: 1.6rem;
+  margin-bottom: 6px;
+}
+.card-content p {
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+/* 모바일 레이아웃 영역 이름 지정 */
+#prayer {
+  grid-area: prayer;
+}
+#bible {
+  grid-area: bible;
+}
+#contempla {
+  grid-area: contem;
+}
+
+/* ───────── 데스크톱(≥900px) : 세로 스택 ───────── */
+@media (min-width: 900px) {
+  .records-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "prayer bible"
+      "prayer contem";
+  }
+
+  /* 높이 통일 또는 자유롭게 */
+  .card {
+    height: 280px;
   }
 }
