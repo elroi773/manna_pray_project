@@ -1,0 +1,105 @@
+:root {
+  --gap: 24px;
+  --radius: 20px;
+  --overlay: rgba(0, 0, 0, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", "Noto Sans KR", sans-serif;
+  background: #fafafa;
+  color: #222;
+}
+
+.records-wrapper {
+  padding: 32px;
+}
+
+/* 기본: 데스크탑 (세로 정렬) */
+.records-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.card {
+  position: relative;
+  height: 300px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--overlay);
+}
+
+.card-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  color: #fff;
+  text-align: center;
+}
+
+.card-content h2 {
+  font-size: 1.6rem;
+  margin-bottom: 6px;
+}
+
+.card-content p {
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+/* 모바일: 가로 2열 (Prayer 세로로 길게 + Bible/Contemplation 위아래로) */
+@media (max-width: 899px) {
+  .records-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "prayer bible"
+      "prayer contem";
+    gap: var(--gap);
+  }
+
+  #prayer {
+    grid-area: prayer;
+    height: 100%;
+    min-height: 100%;
+  }
+
+  #bible {
+    grid-area: bible;
+  }
+
+  #contempla {
+    grid-area: contem;
+  }
+
+  .card {
+    height: 280px;
+  }
+}
