@@ -2,7 +2,7 @@
   padding: 32px 16px;
   background: #fafafa;
   min-height: 100vh;
-  font-family: "Poppins", "Noto Sans KR", sans-serif;
+  font-family: "Pretendard-Regular";
 }
 
 .sectionTitle {
@@ -23,24 +23,20 @@
 
 /* 카드 공통 스타일 */
 .card {
-  /* 크기 — 원하는 비율로 조절 */
-  width: 260px;          /* 데스크톱 기준 한 장 크기 */
+  width: 260px;
   height: 400px;
-
-  /* 둥근 모서리 & 그림자 */
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
   transition: transform 0.3s ease;
-
-  /* 핵심! 이미지가 ‘빈틈 없이’ 채워지도록 */
-  background-size: cover;        /* 영역을 꽉 채우도록 확대/잘림 허용 */
-  background-position: center;   /* 가운데 기준으로 맞춤 */
-  background-repeat: no-repeat;  /* 반복 금지 */
-  background-color: transparent; /* 혹시 모를 회색 배경 제거 */
-
-  position: relative;            /* ::after 필터를 깔기 위해 필요 */
-  margin: 0;                     /* 카드 자체 여백 제거 */
+  
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  
+  position: relative;
+  margin: 0;
   padding: 0;
 }
 
@@ -49,12 +45,25 @@
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
 }
 
-/* 오버레이(필터) – 너무 어두우면 사진이 회색처럼 보이니 옅게 조정 */
+/* 데스크톱 배경 이미지 - public 폴더 기준 절대 경로 */
+#prayer {
+  background-image: url('./img/MyRecord1.png');
+}
+
+#bible {
+  background-image: url('./img/MyRecord2.png');
+}
+
+#contempla {
+  background-image: url('./img/MyRecord3.png');
+}
+
+/* 오버레이(필터) */
 .card::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.10);  /* 0.10~0.15 정도가 무난 */
+  background: rgba(0, 0, 0, 0.10);
   z-index: 0;
 }
 
@@ -68,10 +77,9 @@
   align-items: center;
   color: #fff;
   text-align: center;
-  z-index: 2;       /* 오버레이 위로! */
+  z-index: 2;
   padding: 16px;
 }
-
 
 .cardContent h2 {
   font-size: 1.6rem;
@@ -84,7 +92,7 @@
   opacity: 0.9;
 }
 
-/* 📱 모바일 대응 */
+/* 📱 모바일 대응 - 올바른 비율 */
 @media (max-width: 899px) {
   .recordsGrid {
     display: grid;
@@ -95,33 +103,38 @@
       "prayer contem";
     gap: 16px;
     max-width: 100%;
+    padding: 0 16px;
+    height: 400px; /* 전체 높이 고정 */
   }
-
+  
   #prayer {
     grid-area: prayer;
-    aspect-ratio: 3 / 5;
+    /* aspect-ratio 제거하고 grid로 크기 조정 */
+    background-image: url('./img/MyRecord_Mobile1.png') !important;
   }
-
+  
   #bible {
     grid-area: bible;
-    aspect-ratio: 5 / 3;
+    /* aspect-ratio 제거하고 grid로 크기 조정 */
+    background-image: url('./img/MyRecord_Mobile2.png') !important;
   }
-
+  
   #contempla {
     grid-area: contem;
-    aspect-ratio: 5 / 3;
+    /* aspect-ratio 제거하고 grid로 크기 조정 */
+    background-image: url('./img/MyRecord_Mobile3.png') !important;
   }
-
+  
   .card {
     width: 100%;
-    height: auto;
+    height: 100%; /* grid 셀을 가득 채우도록 */
     max-width: none;
   }
-
+  
   .cardContent h2 {
     font-size: 1.3rem;
   }
-
+  
   .cardContent p {
     font-size: 0.85rem;
   }
@@ -131,15 +144,16 @@
   .recordsWrapper {
     padding: 16px 12px;
   }
-
+  
   .recordsGrid {
     gap: 12px;
+    padding: 0 8px;
   }
-
+  
   .cardContent h2 {
     font-size: 1.1rem;
   }
-
+  
   .cardContent p {
     font-size: 0.8rem;
   }
