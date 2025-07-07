@@ -1,127 +1,146 @@
-:root {
-    --gap: 24px;
-    --radius: 20px;
-    --overlay: rgba(0, 0, 0, 0.45);
-  }
-  
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  body {
-    font-family: "Poppins", "Noto Sans KR", sans-serif;
-    background: #fafafa;
-    color: #222;
-  }
-  
-  .records-wrapper {
-    padding: 32px;
-  }
-  
-  .title {
-    font-size: 2rem;
-    font-weight: 600;
-    margin-bottom: 32px;
-  }
-  
-  /* ✅ 기본: 데스크탑 (가로 3개 카드) */
-  .records-grid {
-    display: flex;
-    flex-direction: row;  /* 가로로 배치 */
-    justify-content: center;
-    gap: var(--gap);
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .card {
-    position: relative;
-    width: 80%;
-    max-width: 360px;
-    height: 400px;
-    border-radius: var(--radius);
-    overflow: hidden;
-    background-size: cover;
-    background-position: center;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
-  }
-  
-  .card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: var(--overlay);
-  }
-  
-  .card-content {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-    color: #fff;
-    text-align: center;
-  }
-  
-  .card-content h2 {
-    font-size: 1.6rem;
-    margin-bottom: 6px;
-  }
-  
-  .card-content p {
-    font-size: 0.95rem;
-    opacity: 0.9;
-  }
-  
+.recordsWrapper {
+  padding: 32px 16px;
+  background: #fafafa;
+  min-height: 100vh;
+  font-family: "Poppins", "Noto Sans KR", sans-serif;
+}
 
-/* 모바일: 가로 2열 (Prayer 세로로 길게 + Bible/Contemplation 위아래로) */
+.sectionTitle {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+
+.recordsGrid {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+/* 카드 공통 스타일 */
+.card {
+  /* 크기 — 원하는 비율로 조절 */
+  width: 260px;          /* 데스크톱 기준 한 장 크기 */
+  height: 400px;
+
+  /* 둥근 모서리 & 그림자 */
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease;
+
+  /* 핵심! 이미지가 ‘빈틈 없이’ 채워지도록 */
+  background-size: cover;        /* 영역을 꽉 채우도록 확대/잘림 허용 */
+  background-position: center;   /* 가운데 기준으로 맞춤 */
+  background-repeat: no-repeat;  /* 반복 금지 */
+  background-color: transparent; /* 혹시 모를 회색 배경 제거 */
+
+  position: relative;            /* ::after 필터를 깔기 위해 필요 */
+  margin: 0;                     /* 카드 자체 여백 제거 */
+  padding: 0;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+}
+
+/* 오버레이(필터) – 너무 어두우면 사진이 회색처럼 보이니 옅게 조정 */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.10);  /* 0.10~0.15 정도가 무난 */
+  z-index: 0;
+}
+
+/* 카드 안 텍스트 */
+.cardContent {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  z-index: 2;       /* 오버레이 위로! */
+  padding: 16px;
+}
+
+
+.cardContent h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.cardContent p {
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+/* 📱 모바일 대응 */
 @media (max-width: 899px) {
-    .records-grid {
-      display: grid;
-      grid-template-columns: 2fr 3fr;   /* 왼쪽이 더 세로로 길쭉하게 보여짐 */
-      grid-template-rows: 1fr 1fr;
-      grid-template-areas:
-        "prayer bible"
-        "prayer contem";
-      gap: 16px;
-    }
-  
-    #prayer {
-      grid-area: prayer;
-      height: 100%;
-      min-height: 100%;
-      grid-row: span 2;
-      aspect-ratio: 3 / 5;     /* ✅ 세로로 길쭉한 카드 */
-    }
-  
-    #bible {
-      grid-area: bible;
-      aspect-ratio: 5 / 3;     /* ✅ 가로 느낌의 위쪽 카드 */
-    }
-  
-    #contempla {
-      grid-area: contem;
-      aspect-ratio: 5 / 3;     /* ✅ 가로 느낌의 아래쪽 카드 */
-    }
-  
-    .card {
-      width: 100%;
-      height: auto;
-      border-radius: 20px;
-      background-size: cover;
-      background-position: center;
-      overflow: hidden;
-      position: relative;
-    }
+  .recordsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      "prayer bible"
+      "prayer contem";
+    gap: 16px;
+    max-width: 100%;
   }
-  
+
+  #prayer {
+    grid-area: prayer;
+    aspect-ratio: 3 / 5;
+  }
+
+  #bible {
+    grid-area: bible;
+    aspect-ratio: 5 / 3;
+  }
+
+  #contempla {
+    grid-area: contem;
+    aspect-ratio: 5 / 3;
+  }
+
+  .card {
+    width: 100%;
+    height: auto;
+    max-width: none;
+  }
+
+  .cardContent h2 {
+    font-size: 1.3rem;
+  }
+
+  .cardContent p {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .recordsWrapper {
+    padding: 16px 12px;
+  }
+
+  .recordsGrid {
+    gap: 12px;
+  }
+
+  .cardContent h2 {
+    font-size: 1.1rem;
+  }
+
+  .cardContent p {
+    font-size: 0.8rem;
+  }
+}
