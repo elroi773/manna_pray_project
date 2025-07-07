@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+# 만나교회 변화산 새벽기도회 기도제목 웹앱
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> 만나교회 변화산 새벽기도회 기도제목 작성 및 나눔을 위한 웹앱 프로젝트입니다.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 프로젝트 개요
 
-### `npm start`
+- **목적**: 교회 새벽기도회 기간 동안 기도제목을 작성, 조회, 수정, 삭제하고, 댓글, 익명 작성, 공개/비공개 설정, 기도응답 및 후기 공유 기능을 제공합니다.
+- **대상**: 교회 구성원 누구나
+- **주요 기능**
+  - 회원가입 및 로그인 (카카오, 구글 OAuth 자동 로그인 포함)
+  - 비밀번호/아이디 찾기
+  - 기도제목 CRUD (작성, 조회, 수정, 삭제)
+  - 게시글 공개/비공개 기능
+  - 작성자 이름 익명 처리 또는 아이디 표시 선택
+  - 댓글 기능
+  - 프로필 페이지에서 과거 기도제목 및 기도응답/후기 확인
+  - 기도제목 리트윗(공유) 기능 유사 구현
+  - 스팸/욕설 필터 (추후 예정)
+  - 푸시 및 이메일 알림 (추후 예정)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 기술 스택
 
-### `npm test`
+| 구분           | 기술/서비스              | 설명                                         |
+| -------------- | ----------------------- | -------------------------------------------- |
+| 프론트엔드     | Next.js (React 18)      | React 기반 SSR 및 SPA 기능 제공               |
+| 인증           | NextAuth.js             | 카카오, 구글 OAuth 로그인 처리                |
+| 백엔드/API     | Next.js API Route       | 프론트와 통합된 서버 API 구현                  |
+| 데이터베이스   | Supabase (PostgreSQL)   | 관계형 DB + 인증 + 실시간 기능 제공            |
+| 실시간 기능    | Supabase Realtime       | 댓글 등 실시간 반영 지원                        |
+| 배포 및 호스팅 | Vercel                  | Next.js 프로젝트 무료 CI/CD 및 배포 플랫폼    |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 개발 및 배포 로드맵 (예상)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+| 기간        | 작업 내용                                         |
+| ----------- | ------------------------------------------------ |
+| 0.5주       | 요구사항 정리 및 DB 스키마 설계                   |
+| 1주         | Next.js 프로젝트 셋업 및 기본 인증 구현           |
+| 1주         | 기도제목 CRUD 기능 개발 및 UI 완성                 |
+| 1.5주       | 댓글 기능 및 공개/익명 기능 추가                    |
+| 0.5주       | 프로필 페이지 및 기도응답/후기 기능 구현            |
+| 0.5주       | 기본 알림 기능 및 관리자 페이지 기초 구현            |
+| 1주         | 테스트 및 디버깅, 최종 배포 준비                     |
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 배포 방법
 
-### `npm run eject`
+1. GitHub 저장소에 코드 Push
+2. Vercel에서 GitHub 저장소 연결 후 자동 배포 설정
+3. `.env` 파일 또는 Vercel 환경 변수에 Supabase URL 및 키 등록
+4. 도메인 연결 및 SSL 설정 (자동으로 지원됨)
+5. 배포 상태 및 로그 모니터링
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 환경 변수 (.env.local 예시)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://your-supabase-url.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+NEXTAUTH_URL=https://your-vercel-app-url.vercel.app
