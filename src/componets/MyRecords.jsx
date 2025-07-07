@@ -8,6 +8,7 @@ import MyRecord_Mobile1 from "./img/MyRecord_Mobile1.png";
 import MyRecord_Mobile2 from "./img/MyRecord_Mobile2.png";
 import MyRecord_Mobile3 from "./img/MyRecord_Mobile3.png";
 
+
 const records = [
   { id: "prayer", title: "Prayer topic", subtitle: "나의 기도제목", img: MyRecord1 },
   { id: "bible", title: "Today's Bible", subtitle: "오늘의 성경말씀", img: MyRecord2 },
