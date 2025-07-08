@@ -183,18 +183,40 @@ body {
   grid-area: contem;
 }
 
-/* ───────── 데스크톱(≥900px) : 세로 스택 ───────── */
-@media (min-width: 900px) {
-  .records-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-areas:
-      "prayer bible"
-      "prayer contem";
+/* ✅ 반응형 스타일 */
+@media (max-width: 768px) {
+  img {
+    width: 160px;
+    margin-top: 10px;
+    margin-left: 1px;
   }
 
-  /* 높이 통일 또는 자유롭게 */
-  .card {
-    height: 280px;
+  .menu {
+    top: 40px;
+    right: 15px;
+    margin-right: 5px;
+  }
+
+  .menu a {
+    font-size: 13px;
+  }
+
+  .Top p {
+    font-size: 15px;
+    padding: 0 15px;
+  }
+
+  .Top #chapter {
+    font-size: 12px;
+    margin-bottom: 30px;
+  }
+
+  .prayTitle {
+    padding: 30px 20px 0;
+  }
+
+  .prayTitle h2 {
+    font-size: 18px;
   }
 }
+
