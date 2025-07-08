@@ -22,7 +22,9 @@ function App() {
       <CategoryButtons />
 
       <div className="prayTitle">
-        <h2>인기 기도 제목</h2>
+        <h2>인기 기도 제목
+          commit test
+        </h2>
         <PostList />
       </div>
       <div className="prayTitle">
