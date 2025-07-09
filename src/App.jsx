@@ -9,9 +9,9 @@ function App() {
     <div className="Top">
       <img src={logo} className="App-logo" alt="logo" />
       <div className="menu">
-        <a href="#">로그인</a>
+        <a href="./Login/login.jsx">로그인</a>
         &nbsp;|&nbsp;
-        <a href="#">회원가입</a>
+        <a href="./Join/join.jsx">회원가입</a>
       </div>
       <p>
         너희는 내게 부르짖으며 와서 내게 기도 하면 <br />
