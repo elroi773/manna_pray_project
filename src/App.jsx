@@ -1,3 +1,5 @@
+// App.jsx
+import { useNavigate } from "react-router-dom";
 import logo from "./logo.png";
 import "./App.css";
 import CategoryButtons from "./componets/CategoryButtons";
@@ -5,14 +7,21 @@ import PostList from "./componets/PostList";
 import MyRecords from "./componets/MyRecords";
 
 function App() {
+  const navigate = useNavigate();
+
   return (
     <div className="Top">
       <img src={logo} className="App-logo" alt="logo" />
       <div className="menu">
-        <a href="./Login/login.jsx">로그인</a>
+        <button className="menu-button" onClick={() => navigate("/login")}>
+          로그인
+        </button>
         &nbsp;|&nbsp;
-        <a href="./Join/join.jsx">회원가입</a>
+        <button className="menu-button" onClick={() => navigate("/join")}>
+          회원가입
+        </button>
       </div>
+
       <p>
         너희는 내게 부르짖으며 와서 내게 기도 하면 <br />
         내가 너희를 들을 것이요
