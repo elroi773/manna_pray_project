@@ -1,9 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./PostCard.css";
 
 export default function PostCard({ post }) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/post/${post.id}`);
+  };
+
   return (
-    <div className="post-card">
+    <div className="post-card" onClick={handleClick} style={{ cursor: "pointer" }}>
       <div className="top-row">
         <span className="badge">{post.category}</span>
         <span className="time">{post.time}</span>
