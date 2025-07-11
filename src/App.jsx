@@ -5,6 +5,8 @@ import "./App.css";
 import CategoryButtons from "./componets/CategoryButtons";
 import PostList from "./componets/PostList";
 import MyRecords from "./componets/MyRecords";
+import Footer from "./componets/Footer";
+import Post from "./Post";
 
 function App() {
   const navigate = useNavigate();
@@ -29,48 +31,21 @@ function App() {
       <p id="chapter">예레미야 29 : 12</p>
 
       <CategoryButtons />
-
-      <div className="prayTitle">
-        <h2>인기 기도 제목</h2>
-        <PostList />
-      </div>
-      <div className="prayTitle">
-        <h2>인기 묵상</h2>
-        <PostList />
-      </div>
-      <div className="prayTitle">
-        <h2>나의 기록</h2>
-        <MyRecords />
-      </div>
-
-      <footer className="footer">
-        <div className="footer-container">
-          <div className="footer-info">
-            <h3 className="footer-logo">🙏 Pray With Us</h3>
-            <p className="footer-desc">기도로 하나 되는 공간</p>
-            <p className="footer-maker">제작 : 김이레</p>
-          </div>
-          <div className="footer-links">
-            <a
-              href="https://github.com/elroi773/manna_pray_project"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub
-            </a>
-            <a
-              href="https://www.instagram.com/e1_r0i73/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Instagram
-            </a>
-          </div>
+      <div className="Cards">
+        <div className="prayTitle">
+          <h2>인기 기도 제목</h2>
+          <PostList />
         </div>
-        <div className="footer-bottom">
-          <p>&copy; 2025 Pray With Us. All rights reserved.</p>
+        <div className="prayTitle">
+          <h2>인기 묵상</h2>
+          <PostList />
         </div>
-      </footer>
+        <div className="prayTitle">
+          <h2>나의 기록</h2>
+          <MyRecords />
+        </div>
+      </div>
+      <Footer />
     </div>
   );
 }
