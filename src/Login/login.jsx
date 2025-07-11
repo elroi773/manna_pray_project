@@ -1,75 +1,64 @@
+// src/Login/Login.jsx
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
-const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [loginCheck, setLoginCheck] = useState(false); // 로그인 상태 체크
-
+function Login() {
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    name: "",
+    password: "",
+  });
 
-  const handleLogin = async (event) => {
-    event.preventDefault();
-    await new Promise((r) => setTimeout(r, 1000));
-    
-    const response = await fetch(
-      "로그인 서버 주소",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      }
-    );
-    const result = await response.json();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
-    if (response.status === 200) {
-      setLoginCheck(false);
-      sessionStorage.setItem("token", result.token);
-      sessionStorage.setItem("email", result.email); // 여기서 userid를 저장합니다.
-      sessionStorage.setItem("role", result.role); // 여기서 role를 저장합니다.
-      sessionStorage.setItem("storeid", result.storeId); // 여기서 role를 저장합니다.
-      console.log("로그인성공, 이메일주소:" + result.email);
-      navigate("../App.jsx"); // 로그인 성공시 홈으로 이동합니다.
-    } else {
-      setLoginCheck(true);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (formData.name === "" || formData.password === "") {
+      alert("모든 항목을 입력해주세요.");
+      return;
     }
+    alert("로그인 성공!");
+    navigate("/"); // 로그인 성공 후 홈으로 이동
   };
 
   return (
     <div className="login-container">
-      <form className="login-form" onSubmit={handleLogin}>
-        <h1>On&Off</h1>
-        <label htmlFor="username">이메일</label>
+      <h1>로그인</h1>
+      <form onSubmit={handleSubmit} className="login-form">
         <input
           type="text"
-          id="username"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          name="name"
+          placeholder="이름"
+          value={formData.name}
+          onChange={handleChange}
+          required
         />
-
-        <label htmlFor="password">비밀번호</label>
         <input
           type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          name="password"
+          placeholder="비밀번호"
+          value={formData.password}
+          onChange={handleChange}
+          required
         />
-         {loginCheck && (
-        <label  style={{color: "red"}}>이메일 혹은 비밀번호가 틀렸습니다.</label>
-        )}
-        <button onClick={handleLogin}>로그인</button>
-
-        <p className="signup-link">
-          아직 회원이 아니신가요? <Link to="/signup">회원가입</Link>
-        </p>
+        <button type="submit">로그인</button>
+        <button
+          type="button"
+          className="back-button"
+          onClick={() => navigate("/")}
+        >
+          돌아가기
+        </button>
       </form>
     </div>
   );
-};
+}
 
 export default Login;
