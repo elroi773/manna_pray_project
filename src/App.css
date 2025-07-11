@@ -1,44 +1,37 @@
 @font-face {
   font-family: "Pretendard-Regular";
-  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
-    format("woff");
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
 
-* {
-  font-family: "Pretendard-Regular";
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+:root {
+  --gap: 24px;
+  --radius: 20px;
+  --overlay: rgba(0, 0, 0, 0.45);
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Pretendard-Regular", "Poppins", "Noto Sans KR", sans-serif;
+}
+
+body {
+  background: #fafafa;
+  color: #222;
+}
+
+/* ===== Header / Top 영역 ===== */
 .Top {
   position: relative;
   padding: 20px;
 }
 
-img {
+.Top img {
   width: 200px;
-  margin-top: 20px;
-  margin-left: 5px;
-}
-
-.menu {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
-.menu a {
-  font-size: 15px;
-  text-decoration: none;
-  color: black;
-  transition: 0.3s ease-in-out;
-}
-
-.menu a:hover {
-  color: gray;
+  margin: 20px 0 0 5px;
 }
 
 .Top p {
@@ -54,210 +47,38 @@ img {
   text-align: center;
 }
 
-.prayTitle {
-  padding-left: 30px;
-  padding-top: 50px;
-}
-
-/* ✅ 반응형 스타일 */
-@media (max-width: 768px) {
-  img {
-    width: 160px;
-    margin-top: 10px;
-    margin-left: 1px;
-  }
-
-  .menu {
-    top: 40px;
-    right: 15px;
-    margin-right: 5px;
-  }
-
-  .menu a {
-    font-size: 13px;
-  }
-
-  .Top p {
-    font-size: 15px;
-    padding: 0 15px;
-  }
-
-  .Top #chapter {
-    font-size: 12px;
-    margin-bottom: 30px;
-  }
-
-  .prayTitle {
-    padding: 30px 20px 0;
-  }
-
-  .prayTitle h2 {
-    font-size: 18px;
-  }
-}
-
-:root {
-  --gap: 24px;
-  --radius: 20px;
-  --overlay: rgba(0, 0, 0, 0.45);
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "Poppins", "Noto Sans KR", sans-serif;
-  background: #fafafa;
-  color: #222;
-}
-
-.records-wrapper {
-  padding: 32px;
-}
-
-.title {
-  font-size: 2rem;
-  font-weight: 600;
-  margin-bottom: 32px;
-}
-
-/* ───────── 기본(모바일) : 2열 그리드 ───────── */
-.records-grid {
-  display: flex;            /* flex로도 충분 */
-  flex-direction: column;   /* 세로 정렬 */
-  gap: var(--gap);
-}
-
-/* 카드 공통 스타일 */
-.card {
-  position: relative;
-  height: 280px;
-  border-radius: var(--radius);
-  overflow: hidden;
-  background-size: cover;
-  background-position: center;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
-}
-.card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--overlay);
-}
-.card-content {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
-  color: #fff;
-  text-align: center;
-}
-.card-content h2 {
-  font-size: 1.6rem;
-  margin-bottom: 6px;
-}
-.card-content p {
-  font-size: 0.95rem;
-  opacity: 0.9;
-}
-
-.footer {
-  background-color: #f9f9f9;
-  border-top: 1px solid #e0e0e0;
-  margin-top: 60px;
-  padding: 40px 20px 20px;
-  font-family: 'Noto Sans KR', sans-serif;
-  color: #444;
-}
-
-.footer-container {
-  max-width: 960px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.footer-info {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.footer-logo {
-  font-size: 22px;
-  font-weight: bold;
-  margin-bottom: 4px;
-  color: #222;
-}
-
-.footer-desc {
-  font-size: 14px;
-  margin: 2px 0;
-  color: #666;
-}
-
-.footer-maker {
-  font-size: 13px;
-  color: #999;
-  margin-top: 4px;
-}
-
-.footer-links {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 10px;
-}
-
-.footer-links a {
-  font-size: 14px;
-  color: #666;
-  text-decoration: none;
-  transition: color 0.3s, transform 0.2s;
-}
-
-.footer-links a:hover {
-  color: #222;
-  transform: translateY(-1px);
-  text-decoration: underline;
-}
-
-.footer-bottom {
-  text-align: center;
-  font-size: 12px;
-  color: #aaa;
-  margin-top: 10px;
-}
-
-
 .menu {
-  margin-top: 16px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 16px;
+  margin-bottom: 40px;
+}
+
+.menu a {
+  font-size: 15px;
+  text-decoration: none;
+  color: black;
+  transition: 0.3s ease-in-out;
+  margin: 0 6px;
+}
+
+.menu a:hover {
+  color: gray;
 }
 
 .menu-button {
-  background-color: #535353; 
+  background-color: #535353;
   color: white;
   border: none;
   border-radius: 8px;
   padding: 10px 18px;
-  margin: 0 6px;
   font-size: 14px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  font-family: 'Noto Sans KR', sans-serif;
 }
 
 .menu-button:hover {
@@ -269,28 +90,101 @@ body {
   transform: scale(0.98);
 }
 
+/* ===== 타이틀 ===== */
+.prayTitle {
+  padding: 50px 0 0 30px;
+}
 
+.prayTitle h2 {
+  font-size: 22px;
+}
 
-/* 모바일 레이아웃 영역 이름 지정 */
+/* ===== 카드 레이아웃 ===== */
+.records-wrapper {
+  padding: 32px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 32px;
+}
+
+.records-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.card {
+  position: relative;
+  height: 280px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--overlay);
+}
+
+.card-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  color: #fff;
+  text-align: center;
+}
+
+.card-content h2 {
+  font-size: 1.6rem;
+  margin-bottom: 6px;
+}
+
+.card-content p {
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.Cards {
+  display: flex;
+  flex-direction: column;
+  gap: 100px; /*  컴포넌트 간 간격 */
+}
+
+/* ===== Grid Area 지정 ===== */
 #prayer {
   grid-area: prayer;
 }
+
 #bible {
   grid-area: bible;
 }
+
 #contempla {
   grid-area: contem;
 }
 
-
-
-
-/* ✅ 반응형 스타일 */
+/* ===== 반응형 (768px 이하) ===== */
 @media (max-width: 768px) {
-  img {
+  .Top img {
     width: 160px;
-    margin-top: 10px;
-    margin-left: 1px;
+    margin: 10px 0 0 1px;
   }
 
   .menu {
@@ -321,4 +215,3 @@ body {
     font-size: 18px;
   }
 }
-
