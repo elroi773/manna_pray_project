@@ -6,8 +6,9 @@ export default function PostCard({ post }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/post/${post.id}`);
+    navigate(`../post/${post.id}`, { relative: "path" });
   };
+  
 
   return (
     <div className="post-card" onClick={handleClick} style={{ cursor: "pointer" }}>
