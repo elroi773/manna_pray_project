@@ -7,7 +7,7 @@ import App from "./App";
 import Login from "./Login/login";
 import Join from "./Join/join";
 
-const clientId = "YOUR_GOOGLE_CLIENT_ID"; // ← 여기에 발급받은 클라이언트 ID 넣기
+const clientId = "425674337430-rgh226rdlre6qpeb1ojtleb0bufi26go.apps.googleusercontent.com";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
