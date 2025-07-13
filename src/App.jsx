@@ -33,11 +33,11 @@ function App() {
       <CategoryButtons />
       <div className="Cards">
         <div className="prayTitle">
-          <h2>인기 기도 제목</h2>
+          <h2>공감을 많이 받은 기도제목</h2>
           <PostList />
         </div>
         <div className="prayTitle">
-          <h2>인기 묵상</h2>
+          <h2>공감을 많이 받은 묵상</h2>
           <PostList />
         </div>
         <div className="prayTitle">
