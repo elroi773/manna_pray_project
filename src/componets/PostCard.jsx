@@ -6,7 +6,7 @@ export default function PostCard({ post }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`../post/${post.id}`, { relative: "path" });
+    navigate(`/post/${post.id}`, { relative: "path" });
   };
   
 
