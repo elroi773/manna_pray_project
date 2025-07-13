@@ -6,6 +6,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import App from "./App";
 import Login from "./Login/login";
 import Join from "./Join/join";
+import Post from "./Post"; 
 
 const clientId = "425674337430-rgh226rdlre6qpeb1ojtleb0bufi26go.apps.googleusercontent.com";
 
@@ -15,6 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />} />
+          <Route path="/post/:id" element={<Post />} />
           <Route path="/login" element={<Login />} />
           <Route path="/join" element={<Join />} />
         </Routes>
