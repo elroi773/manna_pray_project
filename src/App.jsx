@@ -1,7 +1,10 @@
 // App.jsx
 import { useNavigate } from "react-router-dom";
-import logo from "./logo.png";
 import "./App.css";
+import useScrollFadeIn from "./hooks/useScrollFadeIn";
+
+import logo from "./logo.png";
+
 import CategoryButtons from "./componets/CategoryButtons";
 import PostList from "./componets/PostList";
 import MyRecords from "./componets/MyRecords";
@@ -10,6 +13,10 @@ import Post from "./Post";
 
 function App() {
   const navigate = useNavigate();
+
+  const fadeInPray = useScrollFadeIn("up", 1, 0);
+  const fadeInMeditation = useScrollFadeIn("up", 1, 0.3);
+  const fadeInRecords = useScrollFadeIn("up", 1, 0.6);
 
   return (
     <div className="Top">
@@ -32,15 +39,15 @@ function App() {
 
       <CategoryButtons />
       <div className="Cards">
-        <div className="prayTitle">
+        <div className="prayTitle" {...fadeInPray}>
           <h2>공감을 많이 받은 기도제목</h2>
           <PostList />
         </div>
-        <div className="prayTitle">
+        <div className="prayTitle" {...fadeInMeditation}>
           <h2>공감을 많이 받은 묵상</h2>
           <PostList />
         </div>
-        <div className="prayTitle">
+        <div className="prayTitle" {...fadeInRecords}>
           <h2>나의 기록</h2>
           <MyRecords />
         </div>
@@ -49,5 +56,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
