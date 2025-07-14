@@ -7,7 +7,7 @@
 ## 프로젝트 개요
 
 - **목적**: 교회 새벽기도회 기간 동안 기도제목을 작성, 조회, 수정, 삭제하고, 댓글, 익명 작성, 공개/비공개 설정, 기도응답 및 후기 공유 기능을 제공합니다.
-- **대상**: 교회 구성원 누구나
+- **대상**: 교회 구성원 누구나 ->   2025년 2차 새벽 기도회 : *만나교회 청소년부 * & 2026년 1차 새벽 기도회 : *만나교회 청소년부 + 청년부 (예정)*
 - **주요 기능**
   - 회원가입 및 로그인 (카카오, 구글 OAuth 자동 로그인 포함)
   - 비밀번호/아이디 찾기
@@ -58,10 +58,3 @@
 5. 배포 상태 및 로그 모니터링
 
 ---
-
-## 환경 변수 (.env.local 예시)
-
-```env
-NEXT_PUBLIC_SUPABASE_URL=https://your-supabase-url.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-NEXTAUTH_URL=https://your-vercel-app-url.vercel.app
