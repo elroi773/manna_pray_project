@@ -1,45 +1,44 @@
-/* src/Login/Login.css */
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
 
-.login-container {
-    max-width: 400px;
-    margin: 60px auto;
-    padding: 30px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    text-align: center;
-    font-family: 'Noto Sans KR', sans-serif;
-    background-color: #fdfdfd;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .login-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .login-form input {
-    padding: 12px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-  }
-  
-  .login-form button {
-    padding: 12px;
-    font-size: 16px;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  
-  .back-button {
-    background-color: #ccc;
-    color: #333;
-  }
-  
-  .back-button:hover {
-    background-color: #bbb;
-  }
-  
+*{
+  font-family: 'Pretendard-Regular';
+}
+
+.auth-page {
+  display: flex;
+  justify-content: center; /* 가로 정렬 */
+  align-items: center;      /* 세로 정렬 */
+  height: 70vh;
+}
+
+.auth-container {
+  padding: 40px;
+  text-align: center;
+  width: 300px;
+  gap: 30px;
+}
+
+.auth-container h1{
+  margin-bottom: 10px;
+}
+
+.auth-container p {
+  margin-bottom: 70px;
+}
+
+.auth-link {
+  margin-top: 10px;
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.auth-link:hover {
+  color: #0056b3;
+}
