@@ -1,13 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./MyRecords.css";
 
 import MyRecord1 from "./img/MyRecord1.png";
 import MyRecord2 from "./img/MyRecord2.png";
 import MyRecord3 from "./img/MyRecord3.png";
-import MyRecord_Mobile1 from "./img/MyRecord_Mobile1.png";
-import MyRecord_Mobile2 from "./img/MyRecord_Mobile2.png";
-import MyRecord_Mobile3 from "./img/MyRecord_Mobile3.png";
-
 
 const records = [
   { id: "prayer", title: "Prayer topic", subtitle: "나의 기도제목", img: MyRecord1 },
@@ -28,11 +25,20 @@ export default function MyRecords() {
 }
 
 function Card({ id, title, subtitle, img }) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (id === "bible") {
+      navigate("/today"); // ✅ 오늘의 성경말씀 클릭 시 이동
+    }
+  };
+
   return (
     <article
       id={id}
       className="card"
       style={{ backgroundImage: `url(${img})` }}
+      onClick={handleClick}
     >
       <div className="cardContent">
         <h2>{title}</h2>
