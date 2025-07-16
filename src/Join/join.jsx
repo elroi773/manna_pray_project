@@ -1,13 +1,29 @@
-// src/Join/join.jsx
 import React, { useState } from "react";
-import { GoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import { auth, provider } from "../firebase";
+import { signInWithPopup } from "firebase/auth";
 import "./join.css";
 
 function Join() {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+
+  const handleGoogleSignUp = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      console.log("회원가입 사용자 (Firebase):", user);
+      setUser({
+        name: user.displayName,
+        email: user.email,
+        photoURL: user.photoURL,
+        uid: user.uid,
+      });
+      navigate("/");
+    } catch (error) {
+      console.error("회원가입 실패:", error);
+    }
+  };
 
   return (
     <div className="auth-page">
@@ -16,17 +32,7 @@ function Join() {
         {!user ? (
           <>
             <p>Google 계정으로 회원가입</p>
-            <GoogleLogin
-              onSuccess={(credentialResponse) => {
-                const decoded = jwtDecode(credentialResponse.credential);
-                console.log("회원가입 사용자:", decoded);
-                setUser(decoded);
-                navigate("/");
-              }}
-              onError={() => {
-                console.log("회원가입 실패");
-              }}
-            />
+            <button onClick={handleGoogleSignUp}>Google 계정으로 회원가입</button>
             <p className="auth-link" onClick={() => navigate("/login")}>
               이미 계정이 있으신가요? 로그인
             </p>
