@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "./firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
+import AppRouter from "./routes/Router";
 
 import "./App.css";
 import useScrollFadeIn from "./hooks/useScrollFadeIn";
