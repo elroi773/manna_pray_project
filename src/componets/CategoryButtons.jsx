@@ -1,5 +1,6 @@
-// CategoryButtons.jsx
+// components/CategoryButtons.jsx
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./CategoryButtons.css";
 
 const categories = [
@@ -14,10 +15,16 @@ const categories = [
 ];
 
 export default function CategoryButtons() {
+  const navigate = useNavigate();
+
+  const handleClick = (label) => {
+    navigate(`/category/${label}`);
+  };
+
   return (
     <div className="wrapper">
       {categories.map((label) => (
-        <button key={label} className="btn">
+        <button key={label} className="btn" onClick={() => handleClick(label)}>
           {label}
         </button>
       ))}
