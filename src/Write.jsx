@@ -32,10 +32,14 @@ export default function Write(loggedInUser) {
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           >
-            <option value="자유">자유</option>
-            <option value="공지">공지</option>
-            <option value="질문">질문</option>
-            <option value="후기">후기</option>
+            <option value="전체">전체</option>
+            <option value="묵상">묵상</option>
+            <option value="개인">개인</option>
+            <option value="가정">가정</option>
+            <option value="사역">사역</option>
+            <option value="중보">중보</option>
+            <option value="국가">국가</option>
+            <option value="공동체">공동체</option>
           </select>
         </label>
 
