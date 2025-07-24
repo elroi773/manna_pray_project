@@ -2,7 +2,7 @@ import React from "react";
 import "./Write.css";
 
 export default function Write(loggedInUser) {
-  const [category, setCategory] = useState("자유");
+  const [category, setCategory] = useState("전체");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [useCurrentId, setUseCurrentId] = useState(true);
