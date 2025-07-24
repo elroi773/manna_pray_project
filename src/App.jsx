@@ -10,10 +10,12 @@ import useScrollFadeIn from "./hooks/useScrollFadeIn";
 
 import logo from "./logo.png";
 
+
 import CategoryButtons from "./componets/CategoryButtons";
 import PostList from "./componets/PostList";
 import MyRecords from "./componets/MyRecords";
 import Footer from "./componets/Footer";
+import WritingButton from "./componets/WritingButton";
 
 function App() {
   const navigate = useNavigate();
@@ -72,6 +74,9 @@ function App() {
             </button>
           </>
         )}
+      </div>
+      <div className="button-section">
+        <WritingButton />
       </div>
 
       {/* 메인 문구 */}
