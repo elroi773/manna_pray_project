@@ -1,7 +1,7 @@
 import React from "react";
 import "./Write.css";
 
-export default function Write() {
+export default function Write(loggedInUser) {
   const [category, setCategory] = useState("자유");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
