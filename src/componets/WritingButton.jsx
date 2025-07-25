@@ -6,7 +6,7 @@ import "./WritingButton.css";
 export default function WritingButton() {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate("../Write.jsx");
+    navigate("../Write");
   };
 
   return (
