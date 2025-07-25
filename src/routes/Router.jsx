@@ -9,9 +9,9 @@ export default function AppRouter(){
             <Routes>
                 <Route path="/" element={<CategoryButtons />}/>
                 <Route path="/category/:categoryName" element={<CategoryPage />} />
-                <Route path="/write" element={<Write loggedInUser="mirim123" />} /> 
+                <Route path="/write" element={<Write />} /> 
                 {/* loggedInUser 나중에 수정해야 함  */}
             </Routes>
         </BrowserRouter>
     );
-}
+}   
