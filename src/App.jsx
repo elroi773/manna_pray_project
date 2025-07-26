@@ -84,7 +84,6 @@ function App() {
 
       {/* 콘텐츠 영역 */}
       <CategoryButtons />
-      <WritingButton/>
       <div className="Cards">
         <div className="prayTitle" {...fadeInPray}>
           <h2>공감을 많이 받은 기도제목</h2>
