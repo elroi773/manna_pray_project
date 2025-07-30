@@ -11,14 +11,18 @@ const categories = [
   "사역",
   "중보",
   "국가",
-  "공동체",
+  "글 쓰러가기",
 ];
 
 export default function CategoryButtons() {
   const navigate = useNavigate();
 
   const handleClick = (label) => {
-    navigate(`/category/${label}`);
+    if (label === "글 쓰러가기") {
+      navigate("/write"); 
+    } else {
+      navigate(`/category/${label}`);
+    }
   };
 
   return (
