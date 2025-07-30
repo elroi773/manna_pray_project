@@ -13,13 +13,15 @@ function Layout() {
 }
 
 export default function AppRouter() {
-  return (
-    <Routes>
-      <Route path="*" element={<Layout />}>
-        <Route index element={<Home />} />               {/* 기본 / 경로 */}
-        <Route path="category/:categoryName" element={<CategoryPage />} />
-        <Route path="write" element={<Write loggedInUser="mirim123" />} />
-      </Route>
-    </Routes>
-  );
-}
+    return (
+      <Routes>
+        {/* 부모 경로에 반드시 path="*" 와일드카드 붙이기 */}
+        <Route path="*" element={<Layout />}>
+          {/* index 경로 (기본 페이지) */}
+          <Route index element={<Home />} />
+          <Route path="category/:categoryName" element={<CategoryPage />} />
+          <Route path="write" element={<Write loggedInUser="mirim123" />} />
+        </Route>
+      </Routes>
+    );
+  }
