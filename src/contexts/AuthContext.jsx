@@ -10,9 +10,8 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user); // user는 null이거나 로그인한 유저 객체
+      setCurrentUser(user); // 로그인 유저 or null
     });
-
     return () => unsubscribe();
   }, []);
 
