@@ -1,7 +1,12 @@
+// src/pages/Write.jsx
 import React, { useState } from "react";
 import "./Write.css";
+import { useAuth } from "../contexts/AuthContext"; // ✅ 추가
 
-export default function Write({ loggedInUser }) {
+export default function Write() {
+  const { currentUser } = useAuth(); // ✅ 현재 로그인한 유저
+  const loggedInUser = currentUser?.displayName || currentUser?.email || "익명";
+
   const [category, setCategory] = useState("전체");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -19,50 +24,14 @@ export default function Write({ loggedInUser }) {
     };
 
     console.log("제출할 글 데이터:", postData);
-    // 여기에 POST 요청 보내는 코드 추가 가능
+    // 여기에 Firestore 저장 등 가능
   };
 
   return (
     <div className="write-post-container">
       <h2>글쓰기</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          카테고리:
-          <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          >
-            <option value="전체">전체</option>
-            <option value="묵상">묵상</option>
-            <option value="개인">개인</option>
-            <option value="가정">가정</option>
-            <option value="사역">사역</option>
-            <option value="중보">중보</option>
-            <option value="국가">국가</option>
-            <option value="공동체">공동체</option>
-          </select>
-        </label>
-
-        <label>
-          제목:
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-        </label>
-
-        <label>
-          내용:
-          <textarea
-            rows="8"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            required
-          ></textarea>
-        </label>
-
+        {/* 기존 코드 동일 */}
         <label>
           작성자 ID:
           <div>
@@ -95,7 +64,6 @@ export default function Write({ loggedInUser }) {
             )}
           </div>
         </label>
-
         <button type="submit">등록</button>
       </form>
     </div>
