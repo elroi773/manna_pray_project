@@ -1,0 +1,76 @@
+/* Write.css */
+
+.write-post-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f8fafc;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .write-post-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .write-post-container form label {
+    display: block;
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: #555;
+  }
+  
+  .write-post-container form select,
+  .write-post-container form input[type="text"],
+  .write-post-container form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    resize: vertical;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease-in-out;
+  }
+  
+  .write-post-container form select:focus,
+  .write-post-container form input[type="text"]:focus,
+  .write-post-container form textarea:focus {
+    outline: none;
+    border-color: #4f46e5; /* 보라색 계열 */
+    box-shadow: 0 0 4px #4f46e5aa;
+  }
+  
+  .write-post-container form label div {
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .write-post-container form input[type="radio"] {
+    cursor: pointer;
+  }
+  
+  .write-post-container form button {
+    width: 100%;
+    padding: 12px 0;
+    background-color: #474747;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+  }
+  
+  .write-post-container form button:hover {
+    background-color: #4338ca;
+  }
+  
