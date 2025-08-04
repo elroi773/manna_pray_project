@@ -2,6 +2,7 @@ import { Routes, Route, Outlet } from "react-router-dom";
 import Home from "../pages/Home";
 import CategoryPage from "../pages/CategoryPage";
 import Write from "../pages/Write";
+import Mypray from "../"
 
 function Layout() {
   return (
