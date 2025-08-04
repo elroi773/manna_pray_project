@@ -2,7 +2,8 @@ import { Routes, Route, Outlet } from "react-router-dom";
 import Home from "../pages/Home";
 import CategoryPage from "../pages/CategoryPage";
 import Write from "../pages/Write";
-import Mypray from "../"
+import Mypray from "../pages/Mypray";
+import Contemplation from "../pages/MyContemplation";
 
 function Layout() {
   return (
@@ -25,8 +26,7 @@ export default function AppRouter() {
         <Route path="category/:categoryName" element={<CategoryPage />} />
         
         {/* ✅ "/write" 경로 */}
-        <Route path="write" element={<Write loggedInUser="mirim123" />} />
-      </Route>
+        <Route path="write" element={<Write loggedInUser="mirim123" />} />      </Route>
 
       {/* ❗ 맨 마지막에 NotFound 처리할 경우만 path="*" 사용 */}
       {/* <Route path="*" element={<NotFound />} /> */}
