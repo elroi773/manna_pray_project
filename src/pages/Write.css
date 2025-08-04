@@ -1,76 +1,147 @@
 /* Write.css */
 
 .write-post-container {
-    max-width: 600px;
-    margin: 40px auto;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border: 1px solid #e5e7eb;
+}
+
+.write-post-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #1f2937;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.write-post-container form label {
+  display: block;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.95rem;
+}
+
+.write-post-container form select,
+.write-post-container form input[type="text"],
+.write-post-container form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  margin-top: 8px;
+  border: 2px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  resize: vertical;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+  background-color: #fafafa;
+}
+
+.write-post-container form select:focus,
+.write-post-container form input[type="text"]:focus,
+.write-post-container form textarea:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  background-color: #ffffff;
+}
+
+.write-post-container form textarea {
+  min-height: 120px;
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+/* 라디오 버튼 그룹 스타일링 */
+.write-post-container form label > div {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  transition: background-color 0.2s ease;
+}
+
+.write-post-container form label > div:hover {
+  background-color: #f3f4f6;
+}
+
+.write-post-container form input[type="radio"] {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  accent-color: #6366f1;
+}
+
+.write-post-container form label > div > label {
+  cursor: pointer;
+  margin-bottom: 0;
+  font-weight: 500;
+  color: #4b5563;
+  flex-grow: 1;
+}
+
+/* 커스텀 ID 입력 필드 */
+.write-post-container form label > div input[type="text"] {
+  margin-top: 0;
+  margin-left: 10px;
+  flex-grow: 1;
+  background-color: #ffffff;
+}
+
+.write-post-container form button {
+  width: 100%;
+  padding: 14px 0;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 25px;
+  box-shadow: 0 2px 10px rgba(99, 102, 241, 0.2);
+}
+
+.write-post-container form button:hover {
+  background: linear-gradient(135deg, #5b5bd6 0%, #7c3aed 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.write-post-container form button:active {
+  transform: translateY(0);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .write-post-container {
+    margin: 20px;
     padding: 20px;
-    background-color: #f8fafc;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
   
   .write-post-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
+    font-size: 1.5rem;
   }
   
-  .write-post-container form label {
-    display: block;
-    margin-bottom: 15px;
-    font-weight: 600;
-    color: #555;
-  }
-  
-  .write-post-container form select,
-  .write-post-container form input[type="text"],
-  .write-post-container form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 6px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-    resize: vertical;
-    box-sizing: border-box;
-    transition: border-color 0.2s ease-in-out;
-  }
-  
-  .write-post-container form select:focus,
-  .write-post-container form input[type="text"]:focus,
-  .write-post-container form textarea:focus {
-    outline: none;
-    border-color: #4f46e5; /* 보라색 계열 */
-    box-shadow: 0 0 4px #4f46e5aa;
-  }
-  
-  .write-post-container form label div {
-    margin-top: 6px;
-    display: flex;
-    align-items: center;
+  .write-post-container form label > div {
+    flex-direction: column;
+    align-items: flex-start;
     gap: 8px;
   }
   
-  .write-post-container form input[type="radio"] {
-    cursor: pointer;
-  }
-  
-  .write-post-container form button {
+  .write-post-container form label > div input[type="text"] {
+    margin-left: 0;
     width: 100%;
-    padding: 12px 0;
-    background-color: #474747;
-    border: none;
-    border-radius: 6px;
-    color: white;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 20px;
   }
-  
-  .write-post-container form button:hover {
-    background-color: #4338ca;
-  }
-  
+}
