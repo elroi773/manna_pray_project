@@ -8,9 +8,12 @@ import App from "./App";
 import Login from "./Login/login";
 import Join from "./Join/join";
 import Post from "./Post";
-import Today from "./componets/today";
+import Today from "./pages/today";
+import Mypray from "./pages/Mypray";
+import MyContemplation from "./pages/MyContemplation";
 
-const clientId = "425674337430-rgh226rdlre6qpeb1ojtleb0bufi26go.apps.googleusercontent.com";
+const clientId =
+  "425674337430-rgh226rdlre6qpeb1ojtleb0bufi26go.apps.googleusercontent.com";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -22,6 +25,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/login" element={<Login />} />
           <Route path="/join" element={<Join />} />
           <Route path="/today" element={<Today />} />
+          <Route path="/mypray" element={<Mypray />} />
+          <Route path="/mycomtemplation" element={<MyContemplation />} />
         </Routes>
       </BrowserRouter>
     </GoogleOAuthProvider>
