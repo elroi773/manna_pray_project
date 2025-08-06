@@ -1,0 +1,61 @@
+.pray-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    font-family: "Helvetica Neue", sans-serif;
+    background-color: #fffdf8;
+    min-height: 100vh;
+  }
+  
+  .title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #3b3b3b;
+    margin-bottom: 40px;
+  }
+  
+  .pray-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .pray-card {
+    background-color: #fff;
+    border-left: 5px solid #ffb347;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+  }
+  
+  .pray-card h3 {
+    margin: 0 0 10px;
+    color: #444;
+  }
+  
+  .pray-card p {
+    margin: 0;
+    color: #666;
+    line-height: 1.6;
+    white-space: pre-wrap;
+  }
+  
+  .write-button {
+    margin-top: 40px;
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #ffa94d;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .write-button:hover {
+    background-color: #f08c00;
+  }
+  
