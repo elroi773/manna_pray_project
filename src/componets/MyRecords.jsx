@@ -32,6 +32,8 @@ function Card({ id, title, subtitle, img }) {
       navigate("/today"); // ✅ 오늘의 성경말씀 클릭 시 이동
     } else if (id === "prayer"){
       navigate("/mypray");
+    } else{
+      navigate("/mycomtemplation");
     }
   };
 
