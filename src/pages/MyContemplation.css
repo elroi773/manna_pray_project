@@ -1,0 +1,61 @@
+.contemplation-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    font-family: "Helvetica Neue", sans-serif;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+  }
+  
+  .title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #4a4a4a;
+    margin-bottom: 40px;
+  }
+  
+  .record-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .record-card {
+    background-color: #fff;
+    border-left: 5px solid #6a5acd;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+  }
+  
+  .record-card h3 {
+    margin: 0 0 10px;
+    color: #333;
+  }
+  
+  .record-card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.5;
+    white-space: pre-wrap;
+  }
+  
+  .write-button {
+    margin-top: 40px;
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #6a5acd;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .write-button:hover {
+    background-color: #5a4dbf;
+  }
+  
