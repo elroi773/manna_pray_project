@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./Contemplation.css";
+import "./MyContemplation.css";
 
 export default function MyContemplation(){
     return(
