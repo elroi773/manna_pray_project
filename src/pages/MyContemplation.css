@@ -1,4 +1,3 @@
-/* MeditationRecords.css */
 .container {
   padding: 1rem;
   background-color: #fff;
@@ -25,6 +24,13 @@ h1 {
   padding: 0.5rem;
   border-radius: 10px;
   text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.video-card.selected {
+  outline: 3px solid #555;
+  transform: scale(1.05);
 }
 
 .video-card iframe {
@@ -42,6 +48,31 @@ h1 {
   justify-content: center;
   color: #333;
   border-radius: 10px;
+}
+
+.reflection-section {
+  margin-top: 2rem;
+  background: #fafafa;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.my-reflection {
+  font-weight: 500;
+  padding: 0.5rem 0;
+}
+
+.my-reflection.empty {
+  color: #999;
+}
+
+.others-list {
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+}
+
+.others-empty {
+  color: #bbb;
 }
 
 @media screen and (min-width: 768px) {
