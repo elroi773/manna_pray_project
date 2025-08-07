@@ -8,6 +8,7 @@ export default function Write() {
   const [content, setContent] = useState("");
   const [useCurrentId, setUseCurrentId] = useState(true);
   const [customId, setCustomId] = useState("");
+  const [selectedDay, setSelectedDay] = useState("1일차");
 
   const loggedInUser = "mirim123 수정예정"; // 예시용 ID. Firebase 연결 시 대체 가능
 
@@ -18,6 +19,7 @@ export default function Write() {
       category,
       title,
       content,
+      meditationDay: selectedDay,
       author: useCurrentId ? loggedInUser : customId,
     };
 
@@ -40,6 +42,19 @@ export default function Write() {
             <option value="중보">중보</option>
             <option value="국가">국가</option>
             <option value="공동체">공동체</option>
+          </select>
+        </label>
+
+        <label>
+          변화산 몇일차인가요?
+          <select value={selectedDay} onChange={(e) => setSelectedDay(e.target.value)}>
+            <option value="1일차">1일차</option>
+            <option value="2일차">2일차</option>
+            <option value="3일차">3일차</option>
+            <option value="4일차">4일차</option>
+            <option value="5일차">5일차</option>
+            <option value="6일차">6일차</option>
+            <option value="7일차">7일차</option>
           </select>
         </label>
 
