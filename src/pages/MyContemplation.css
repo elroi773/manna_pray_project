@@ -1,61 +1,58 @@
-.contemplation-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    font-family: "Helvetica Neue", sans-serif;
-    background-color: #f9f9f9;
-    min-height: 100vh;
+/* MeditationRecords.css */
+.container {
+  padding: 1rem;
+  background-color: #fff;
+  color: #000;
+}
+
+h1 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.scroll-row {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding-bottom: 1rem;
+}
+
+.video-card {
+  flex: 0 0 auto;
+  width: 300px;
+  background: #f0f0f0;
+  padding: 0.5rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.video-card iframe {
+  width: 100%;
+  height: 170px;
+  border-radius: 10px;
+}
+
+.coming-soon {
+  width: 100%;
+  height: 170px;
+  background-color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  border-radius: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .scroll-row {
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: visible;
   }
-  
-  .title {
-    text-align: center;
-    font-size: 2.5rem;
-    color: #4a4a4a;
-    margin-bottom: 40px;
+
+  .video-card {
+    width: 320px;
+    margin: 0.5rem;
   }
-  
-  .record-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .record-card {
-    background-color: #fff;
-    border-left: 5px solid #6a5acd;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.05);
-  }
-  
-  .record-card h3 {
-    margin: 0 0 10px;
-    color: #333;
-  }
-  
-  .record-card p {
-    margin: 0;
-    color: #555;
-    line-height: 1.5;
-    white-space: pre-wrap;
-  }
-  
-  .write-button {
-    margin-top: 40px;
-    display: block;
-    width: 100%;
-    padding: 15px;
-    background-color: #6a5acd;
-    color: white;
-    font-size: 1.1rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  .write-button:hover {
-    background-color: #5a4dbf;
-  }
-  
+}
