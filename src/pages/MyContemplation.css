@@ -52,19 +52,58 @@ h1 {
 
 .reflection-section {
   margin-top: 2rem;
-  background: #fafafa;
-  padding: 1rem;
-  border-radius: 10px;
+  background: #fffdf5;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 2px solid #ffe8b3;
+  transition: all 0.3s ease;
+}
+
+.reflection-section h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1rem;
 }
 
 .my-reflection {
-  font-weight: 500;
-  padding: 0.5rem 0;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: #fffbe6;
+  border-left: 5px solid #ababab;
+  border-radius: 8px;
 }
 
 .my-reflection.empty {
   color: #999;
+  background-color: #f9f9f9;
+  border-left: none;
+  font-style: italic;
 }
+
+.write-button {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background-color: #727272;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.2s ease;
+  text-decoration: none;
+}
+
+.write-button:hover {
+  background-color: #393939;
+}
+
 
 .others-list {
   margin-top: 0.5rem;
