@@ -1,8 +1,8 @@
 .post-card {
-  background: #f9f9f9;
+  background: #ffffff;
   padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   font-family: 'Noto Sans KR', sans-serif;
   max-width: 360px;
   width: 100%;
@@ -11,24 +11,37 @@
   gap: 16px;
   box-sizing: border-box;
   text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* 상단 */
+.post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* 상단: 카테고리 + 시간 */
 .top-row {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  color: #888;
+  font-size: 13px;
+  color: #666;
 }
 
 .badge {
-  background-color: #b5b5b5;
+  background-color: #444;
   color: white;
   border-radius: 999px;
-  padding: 4px 10px;
+  padding: 4px 12px;
   font-size: 12px;
+}
+
+/* 묵상 일차 표시 */
+.meditation-day {
+  font-size: 14px;
+  font-weight: bold;
+  color: #3a3a3a;
+  margin-top: -8px;
 }
 
 /* 유저 정보 */
@@ -40,8 +53,8 @@
 }
 
 .profile-image {
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   background-color: #ddd;
   border-radius: 50%;
 }
@@ -51,25 +64,26 @@
 }
 
 .nickname {
-  font-weight: bold;
-  font-size: 14px;
+  font-weight: 600;
+  font-size: 15px;
   margin: 0;
 }
 
 .username {
   font-size: 12px;
-  color: #777;
+  color: #999;
   margin: 0;
 }
 
-/* 본문 */
+/* 본문 내용 */
 .content {
-  font-size: 14px;
-  line-height: 1.6;
-  color: #111;
-  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #222;
+  margin: 4px 0;
   word-break: keep-all;
   white-space: pre-wrap;
+  text-align: left;
 }
 
 /* 하단 아이콘들 */
@@ -78,26 +92,35 @@
   justify-content: space-around;
   align-items: center;
   font-size: 14px;
-  gap: 6px;
+  gap: 8px;
   flex-wrap: wrap;
+  border-top: 1px solid #eee;
+  padding-top: 12px;
 }
 
 .icon {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.icon:hover {
+  transform: scale(1.1);
 }
 
 /* 아이콘 별 색상 */
 .icon.comment {
-  color: #a18aff;
+  color: #7b61ff;
 }
 .icon.share {
-  color: #4ea4ff;
+  color: #40aaff;
 }
 .icon.report {
   color: #ff4d6d;
 }
 .icon.like {
-  color: #ff6666;
+  color: #ff6b6b;
+  font-weight: bold;
 }
