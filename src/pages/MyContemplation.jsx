@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import PostList from "../componets/PostList";
 import "./MyContemplation.css";
 
@@ -49,9 +50,14 @@ const youtubeVideos = [
 
 export default function MeditationRecords() {
   const [selectedDay, setSelectedDay] = useState(null);
+  const navigate = useNavigate();
 
   const handleSelect = (index) => {
     setSelectedDay(index);
+  };
+
+  const handleWriteClick = () => {
+    navigate("/write");
   };
 
   return (
@@ -84,9 +90,14 @@ export default function MeditationRecords() {
         <div className="reflection-section">
           <h2>{youtubeVideos[selectedDay].day} 묵상</h2>
           {youtubeVideos[selectedDay].myReflection ? (
-            <p className="my-reflection">{youtubeVideos[selectedDay].myReflection}</p>
+            <p className="my-reflection emphasized">{youtubeVideos[selectedDay].myReflection}</p>
           ) : (
-            <p className="my-reflection empty">아직 묵상글이 없습니다.</p>
+            <div className="my-reflection empty">
+              <p>아직 묵상글이 없습니다.</p>
+              <button className="write-button" onClick={handleWriteClick}>
+                ✍️ 묵상 적으러 가기
+              </button>
+            </div>
           )}
 
           <h3>다른 사람들의 묵상글</h3>
