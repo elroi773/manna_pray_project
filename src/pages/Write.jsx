@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./Write.css";
 import { db } from "../firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 export default function Write() {
   const [category, setCategory] = useState("전체");
@@ -12,7 +13,9 @@ export default function Write() {
   const [customId, setCustomId] = useState("");
   const [selectedDay, setSelectedDay] = useState("1일차");
 
-  const loggedInUser = "mirim123 수정예정"; // 로그인 후 대체 가능
+  const loggedInUser = "mirim123 수정예정";
+
+  const navigate = useNavigate(); // useNavigate 훅 추가
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,6 +32,11 @@ export default function Write() {
     try {
       await addDoc(collection(db, "posts"), postData);
       alert("게시글이 성공적으로 저장되었습니다!");
+
+      // 작성 완료 후 게시글 목록 페이지로 이동
+      navigate("/posts"); // "/posts" 경로로 변경 가능, 필요에 따라 수정하세요
+
+      // 초기화 (필요하면 여기에 둬도 됨)
       setTitle("");
       setContent("");
       setCustomId("");
