@@ -1,6 +1,8 @@
 // src/pages/Write.jsx
 import React, { useState } from "react";
 import "./Write.css";
+import { db } from "../firebase";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 export default function Write() {
   const [category, setCategory] = useState("전체");
@@ -10,9 +12,9 @@ export default function Write() {
   const [customId, setCustomId] = useState("");
   const [selectedDay, setSelectedDay] = useState("1일차");
 
-  const loggedInUser = "mirim123 수정예정"; // 예시용 ID. Firebase 연결 시 대체 가능
+  const loggedInUser = "mirim123 수정예정"; // 로그인 후 대체 가능
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const postData = {
@@ -21,10 +23,21 @@ export default function Write() {
       content,
       meditationDay: selectedDay,
       author: useCurrentId ? loggedInUser : customId,
+      createdAt: serverTimestamp(),
     };
 
-    console.log("제출할 글 데이터:", postData);
-    // TODO: Firestore 저장 로직
+    try {
+      await addDoc(collection(db, "posts"), postData);
+      alert("게시글이 성공적으로 저장되었습니다!");
+      setTitle("");
+      setContent("");
+      setCustomId("");
+      setCategory("전체");
+      setSelectedDay("1일차");
+      setUseCurrentId(true);
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
   };
 
   return (
