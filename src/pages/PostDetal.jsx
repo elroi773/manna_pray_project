@@ -1,17 +1,19 @@
+// src/pages/PostDetail.jsx
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
-import { formatDistanceToNow } from "date-fns"; // 설치 필요: npm install date-fns
+import { formatDistanceToNow } from "date-fns"; // npm install date-fns
 
 export default function PostDetail() {
-  const { id } = useParams();
+  const { id } = useParams(); // URL에서 id 가져오기
   const navigate = useNavigate();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!id) return;
+
     const fetchPost = async () => {
       try {
         const docRef = doc(db, "posts", id);
@@ -27,6 +29,7 @@ export default function PostDetail() {
         setLoading(false);
       }
     };
+
     fetchPost();
   }, [id]);
 
@@ -37,12 +40,16 @@ export default function PostDetail() {
 
   return (
     <div className="post-detail">
-      <button onClick={() => navigate(-1)}>뒤로</button>
+      <button onClick={() => navigate(-1)}>← 뒤로</button>
       <h1>{post.title}</h1>
       <div>
         <span>{post.category}</span> · <strong>{post.author || "익명"}</strong>
       </div>
-      <div>{createdAtDate ? formatDistanceToNow(createdAtDate, { addSuffix: true }) : ""}</div>
+      <div>
+        {createdAtDate
+          ? formatDistanceToNow(createdAtDate, { addSuffix: true })
+          : ""}
+      </div>
       <article>{post.content}</article>
     </div>
   );
