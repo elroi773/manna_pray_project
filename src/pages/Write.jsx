@@ -14,8 +14,7 @@ export default function Write() {
   const [selectedDay, setSelectedDay] = useState("1일차");
 
   const loggedInUser = "mirim123 수정예정";
-
-  const navigate = useNavigate(); // useNavigate 훅 추가
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,13 +29,14 @@ export default function Write() {
     };
 
     try {
-      await addDoc(collection(db, "posts"), postData);
+      // Firestore에 데이터 추가
+      const docRef = await addDoc(collection(db, "posts"), postData);
       alert("게시글이 성공적으로 저장되었습니다!");
 
-      // 작성 완료 후 게시글 목록 페이지로 이동
-      navigate("/posts"); // "/posts" 경로로 변경 가능, 필요에 따라 수정하세요
+      // 글 상세 페이지로 이동
+      navigate(`/posts/${docRef.id}`);
 
-      // 초기화 (필요하면 여기에 둬도 됨)
+      // 입력값 초기화 (필요 시)
       setTitle("");
       setContent("");
       setCustomId("");
