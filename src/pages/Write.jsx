@@ -13,7 +13,7 @@ export default function Write() {
   const [customId, setCustomId] = useState("");
   const [selectedDay, setSelectedDay] = useState("1일차");
 
-  const loggedInUser = "mirim123 수정예정";
+  const loggedInUser = "mirim123 수정예정"; // TODO: 실제 로그인 유저 정보로 변경
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -29,14 +29,14 @@ export default function Write() {
     };
 
     try {
-      // Firestore에 데이터 추가
+      // Firestore에 저장
       const docRef = await addDoc(collection(db, "posts"), postData);
       alert("게시글이 성공적으로 저장되었습니다!");
 
-      // 글 상세 페이지로 이동
-      navigate(`/posts/${docRef.id}`);
+      // 해당 글 상세 페이지로 이동
+      navigate(`/post/${docRef.id}`);
 
-      // 입력값 초기화 (필요 시)
+      // 입력값 초기화
       setTitle("");
       setContent("");
       setCustomId("");
