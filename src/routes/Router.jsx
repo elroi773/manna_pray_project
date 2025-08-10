@@ -4,7 +4,7 @@ import CategoryPage from "../pages/CategoryPage";
 import Write from "../pages/Write";
 import Mypray from "../pages/Mypray";
 import Contemplation from "../pages/MyContemplation";
-import PostDetail from "./pages/PostDetail";
+import PostDetail from "../pages/PostDetail";
 
 function Layout() {
   return (
