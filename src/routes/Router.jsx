@@ -4,6 +4,7 @@ import CategoryPage from "../pages/CategoryPage";
 import Write from "../pages/Write";
 import Mypray from "../pages/Mypray";
 import Contemplation from "../pages/MyContemplation";
+import PostDetail from "./pages/PostDetail";
 
 function Layout() {
   return (
@@ -27,6 +28,9 @@ export default function AppRouter() {
         
         {/* ✅ "/write" 경로 */}
         <Route path="write" element={<Write loggedInUser="mirim123" />} />      </Route>
+
+        <Route path="/post/:id" element={<PostDetail />} />
+
 
       {/* ❗ 맨 마지막에 NotFound 처리할 경우만 path="*" 사용 */}
       {/* <Route path="*" element={<NotFound />} /> */}
