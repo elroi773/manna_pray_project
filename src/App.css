@@ -67,12 +67,12 @@ body {
 }
 
 .menu a:hover {
-  color: gray;
+  color: #5644b4;
 }
 
 .menu-button {
-  background-color: #535353;
-  color: white;
+  background-color: #efbbf4;
+  color: #5644b4;
   border: none;
   border-radius: 8px;
   padding: 10px 18px;
