@@ -1,24 +1,113 @@
-.post-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 24px;
-    padding: 32px;
-  }
-  
-  /* 모바일에서는 가로 스크롤 */
-  @media (max-width: 768px) {
-    .post-list {
-      display: flex;
-      overflow-x: auto;
-      gap: 16px;
-      padding: 16px;
-      scroll-snap-type: x mandatory;
-    }
-  
-    .post-list > * {
-      flex: 0 0 auto;
-      scroll-snap-align: start;
-      width: 280px;
-    }
-  }
-  
+.post-card {
+  background: #1e1e1e; /* 완전 검정 배경 */
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  font-family: 'Noto Sans KR', sans-serif;
+  max-width: 360px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-sizing: border-box;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: #FFFFFF; /* 기본 글자색 흰색 */
+}
+
+.post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+}
+
+/* 상단: 카테고리 + 시간 */
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: #FFFFFF;
+}
+
+.badge {
+  background-color: #F59AC1; /* 포인트 핑크 */
+  color: #000000; /* 검정 글씨 */
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* 묵상 일차 표시 */
+.meditation-day {
+  font-size: 14px;
+  font-weight: bold;
+  color: #FFFFFF;
+  margin-top: -8px;
+}
+
+/* 유저 정보 */
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.profile-image {
+  width: 50px;
+  height: 50px;
+  background-color: #F59AC1; /* 핑크 */
+  border-radius: 50%;
+}
+
+.nickname {
+  font-weight: 600;
+  font-size: 15px;
+  margin: 0;
+  color: #FFFFFF;
+}
+
+/* 본문 내용 */
+.content {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #FFFFFF;
+  margin: 4px 0;
+  word-break: keep-all;
+  white-space: pre-wrap;
+  text-align: left;
+}
+
+/* 하단 아이콘들 */
+.icons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 14px;
+  gap: 8px;
+  flex-wrap: wrap;
+  border-top: 1px solid #333; /* 미묘한 구분선 */
+  padding-top: 12px;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.icon:hover {
+  transform: scale(1.1);
+}
+
+/* 아이콘 색상 */
+.icon.comment,
+.icon.share,
+.icon.report,
+.icon.like {
+  color: #F59AC1; /* 포인트 핑크 */
+  font-weight: bold;
+}
