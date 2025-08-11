@@ -67,29 +67,47 @@
   z-index: 0;
 }
 
-/* 카드 안 텍스트 */
-.cardContent {
+/* 카드 안 텍스트 - 더 구체적인 선택자 사용 */
+.recordsWrapper .MycardContent {
   position: absolute;
   inset: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  color: #fff !important;
   text-align: center;
   z-index: 2;
   padding: 16px;
+  /* App.css 그라데이션 효과 무력화 */
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  -webkit-text-fill-color: #fff !important;
+  background-clip: initial !important;
 }
 
-.cardContent h2 {
+.recordsWrapper .MycardContent h2 {
+  color: #fff !important;
   font-size: 1.6rem;
   font-weight: 600;
   margin-bottom: 6px;
+  /* App.css 그라데이션 효과 무력화 */
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  -webkit-text-fill-color: #fff !important;
+  background-clip: initial !important;
+  text-shadow: none !important;
 }
 
-.cardContent p {
+.recordsWrapper .MycardContent p {
+  color: #fff !important;
   font-size: 0.95rem;
   opacity: 0.9;
+  /* App.css 그라데이션 효과 무력화 */
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  -webkit-text-fill-color: #fff !important;
+  background-clip: initial !important;
 }
 
 /* 📱 모바일 대응 - 올바른 비율 */
@@ -131,11 +149,11 @@
     max-width: none;
   }
   
-  .cardContent h2 {
+  .recordsWrapper .cardContent h2 {
     font-size: 1.3rem;
   }
   
-  .cardContent p {
+  .recordsWrapper .cardContent p {
     font-size: 0.85rem;
   }
 }
@@ -150,11 +168,11 @@
     padding: 0 8px;
   }
   
-  .cardContent h2 {
+  .recordsWrapper .cardContent h2 {
     font-size: 1.1rem;
   }
   
-  .cardContent p {
+  .recordsWrapper .cardContent p {
     font-size: 0.8rem;
   }
 }
