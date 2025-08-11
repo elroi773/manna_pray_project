@@ -128,10 +128,6 @@ body {
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 32px;
-  background: linear-gradient(90deg, var(--primary-purple), var(--accent-pink));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .records-grid {
@@ -147,31 +143,20 @@ body {
   overflow: hidden;
   background-size: cover;
   background-position: center;
-  box-shadow: 0 8px 25px rgba(138, 43, 226, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 2px solid transparent;
-  background-clip: padding-box;
-}
-
-.card::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  background: linear-gradient(45deg, var(--primary-purple), var(--accent-pink), var(--light-purple));
-  border-radius: var(--radius);
-  z-index: -1;
 }
 
 .card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 15px 35px rgba(255, 20, 147, 0.3);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
 }
 
 .card::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(138, 43, 226, 0.6), rgba(255, 20, 147, 0.4));
+  background: var(--overlay);
 }
 
 .card-content {
@@ -187,38 +172,34 @@ body {
 }
 
 .card-content h2 {
-  font-size: 1.8rem;
-  margin-bottom: 8px;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-  font-weight: 700;
+  color: #fff;
+  font-size: 1.6rem;
+  margin-bottom: 6px;
 }
 
 .card-content p {
-  font-size: 1rem;
-  opacity: 0.95;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 0.95rem;
+  opacity: 0.9;
 }
 
 .Cards {
   display: flex;
   flex-direction: column;
-  gap: 100px;
+  gap: 100px; /*  컴포넌트 간 간격 */
 }
 
 /* ===== Grid Area 지정 ===== */
 #prayer {
   grid-area: prayer;
-  background: linear-gradient(135deg, var(--primary-purple), var(--light-purple));
 }
 
 #bible {
   grid-area: bible;
-  background: linear-gradient(135deg, var(--accent-pink), var(--light-pink));
 }
 
 #contempla {
   grid-area: contem;
-  background: linear-gradient(135deg, var(--light-purple), var(--accent-pink));
 }
 
 /* ===== 반응형 (768px 이하) ===== */
@@ -227,25 +208,31 @@ body {
     width: 160px;
     margin: 10px 0 0 1px;
   }
+
   .menu {
     top: 40px;
     right: 15px;
     margin-right: 5px;
   }
+
   .menu a {
     font-size: 13px;
   }
+
   .Top p {
     font-size: 15px;
     padding: 0 15px;
   }
+
   .Top #chapter {
     font-size: 12px;
     margin-bottom: 30px;
   }
+
   .prayTitle {
     padding: 30px 20px 0;
   }
+
   .prayTitle h2 {
     font-size: 18px;
   }
