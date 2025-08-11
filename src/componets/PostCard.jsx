@@ -7,6 +7,28 @@ export default function PostCard({ post }) {
   const navigate = useNavigate();
   const [likes, setLikes] = useState(post.likes || 0);
 
+  // 랜덤 색상 배열 (Faith Time 테마 색상들)
+  const profileColors = [
+    'linear-gradient(135deg, #8A2BE2 0%, #FF1493 100%)', // 보라-핑크
+    'linear-gradient(135deg, #FF1493 0%, #8A2BE2 100%)', // 핑크-보라
+    'linear-gradient(135deg, #DDA0DD 0%, #FF1493 100%)', // 연보라-핑크
+    'linear-gradient(135deg, #8A2BE2 0%, #DDA0DD 100%)', // 보라-연보라
+    'linear-gradient(135deg, #FF1493 0%, #FFB6C1 100%)', // 핑크-연핑크
+    'linear-gradient(135deg, #9370DB 0%, #FF69B4 100%)', // 미디엄보라-핫핑크
+    'linear-gradient(135deg, #BA55D3 0%, #FF1493 100%)', // 미디엄오키드-딥핑크
+  ];
+
+  // 사용자별 고유 색상 (author 이름 기반으로 일관성 유지)
+  const getProfileColor = (author) => {
+    if (!author) return profileColors[0];
+    let hash = 0;
+    for (let i = 0; i < author.length; i++) {
+      hash = author.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const index = Math.abs(hash) % profileColors.length;
+    return profileColors[index];
+  };
+
   // createdAt이 Firestore Timestamp 객체일 경우 JS Date로 변환 필요
   const createdAtDate = post.createdAt ? post.createdAt.toDate() : null;
 
@@ -36,7 +58,10 @@ export default function PostCard({ post }) {
       )}
 
       <div className="user-info">
-        <div className="profile-image" />
+        <div 
+          className="profile-image" 
+          style={{ background: getProfileColor(post.author) }}
+        />
         <div className="user-text">
           <p className="nickname">{post.author || "익명"}</p>
           {/* username 필드는 없으니 제거하거나 author로 대체 */}
