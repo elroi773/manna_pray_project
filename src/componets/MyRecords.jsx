@@ -44,7 +44,7 @@ function Card({ id, title, subtitle, img }) {
       style={{ backgroundImage: `url(${img})` }}
       onClick={handleClick}
     >
-      <div className="cardContent">
+      <div className="MycardContent">
         <h2>{title}</h2>
         <p>{subtitle}</p>
       </div>
