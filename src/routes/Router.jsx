@@ -5,35 +5,53 @@ import Write from "../pages/Write";
 import Mypray from "../pages/Mypray";
 import Contemplation from "../pages/MyContemplation";
 import PostDetail from "../pages/PostDetail";
+import { useState, useEffect } from "react";
+import { supabase } from "../supabaseClient";
 
-function Layout() {
+function Layout({ loggedInUser }) {
   return (
     <div>
-      {/* 공통 컴포넌트 예: <Header />, <CategoryButtons /> 등 넣을 수 있음 */}
+      {/* 예: <Header user={loggedInUser} /> */}
       <Outlet />
     </div>
   );
 }
 
 export default function AppRouter() {
+  const [loggedInUser, setLoggedInUser] = useState(null);
+
+  useEffect(() => {
+    // 초기 세션 가져오기
+    const getInitialSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session?.user) {
+        setLoggedInUser(session.user.email || session.user.user_metadata.full_name);
+      }
+    };
+    getInitialSession();
+
+    // 인증 상태 변경 감지
+    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+      if (session?.user) {
+        setLoggedInUser(session.user.email || session.user.user_metadata.full_name);
+      } else {
+        setLoggedInUser(null);
+      }
+    });
+
+    return () => {
+      authListener.subscription.unsubscribe();
+    };
+  }, []);
+
   return (
     <Routes>
-      {/* ✅ 부모는 "/"로, Outlet 포함된 Layout */}
-      <Route path="/" element={<Layout />}>
-        {/* ✅ index ("/") 페이지 */}
+      <Route path="/" element={<Layout loggedInUser={loggedInUser} />}>
         <Route index element={<Home />} />
-        
-        {/* ✅ "/category/..." 경로 */}
         <Route path="category/:categoryName" element={<CategoryPage />} />
-        
-        {/* ✅ "/write" 경로 */}
-        <Route path="write" element={<Write loggedInUser="mirim123" />} />      </Route>
-
-        <Route path="/post/:id" element={<PostDetail />} />
-
-
-      {/* ❗ 맨 마지막에 NotFound 처리할 경우만 path="*" 사용 */}
-      {/* <Route path="*" element={<NotFound />} /> */}
+        <Route path="write" element={<Write loggedInUser={loggedInUser} />} />
+      </Route>
+      <Route path="post/:id" element={<PostDetail />} />
     </Routes>
   );
 }
