@@ -29,11 +29,15 @@ export default function Write({ loggedInUser }) {
       content,
       meditation_day: selectedDay,
       author: useCurrentId ? loggedInUser : customId,
-      created_at: new Date().toISOString(), // Supabase에 맞게 ISO 날짜로
+      created_at: new Date().toISOString(), // ISO8601 형식
     };
 
     try {
-      const { data, error } = await supabase.from("posts").insert([postData]);
+      const { data, error } = await supabase
+        .from("posts")
+        .insert([postData])
+        .select(); // insert 후 새 데이터 반환
+
       if (error) throw error;
 
       alert("게시글이 성공적으로 저장되었습니다!");
@@ -46,9 +50,8 @@ export default function Write({ loggedInUser }) {
       setCategory("전체");
       setSelectedDay("1일차");
       setUseCurrentId(true);
-
     } catch (error) {
-      console.error("Error adding post: ", error);
+      console.error("Error adding post:", error);
       alert("저장 중 오류가 발생했습니다.");
     }
   };
@@ -59,10 +62,7 @@ export default function Write({ loggedInUser }) {
       <form onSubmit={handleSubmit}>
         <label>
           카테고리:
-          <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          >
+          <select value={category} onChange={(e) => setCategory(e.target.value)}>
             <option value="전체">전체</option>
             <option value="묵상">묵상</option>
             <option value="개인">개인</option>
@@ -76,10 +76,7 @@ export default function Write({ loggedInUser }) {
 
         <label>
           변화산 몇일차인가요?
-          <select
-            value={selectedDay}
-            onChange={(e) => setSelectedDay(e.target.value)}
-          >
+          <select value={selectedDay} onChange={(e) => setSelectedDay(e.target.value)}>
             {[...Array(7)].map((_, i) => (
               <option key={i} value={`${i + 1}일차`}>
                 {i + 1}일차
