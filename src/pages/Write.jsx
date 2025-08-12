@@ -17,7 +17,9 @@ export default function Write({ loggedInUser }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!loggedInUser) {
+    // 로그인 여부 확인
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
       alert("로그인 후 글을 작성할 수 있습니다.");
       navigate("/login");
       return;
@@ -28,20 +30,19 @@ export default function Write({ loggedInUser }) {
       title,
       content,
       meditation_day: selectedDay,
-      author: useCurrentId ? loggedInUser : customId,
-      created_at: new Date().toISOString(), // ISO8601 형식
+      author: useCurrentId ? user.id : customId, // UID 사용
+      created_at: new Date().toISOString(),
     };
 
     try {
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from("posts")
-        .insert([postData])
-        .select(); // insert 후 새 데이터 반환
+        .insert([postData]); // .select() 제거
 
       if (error) throw error;
 
       alert("게시글이 성공적으로 저장되었습니다!");
-      navigate(`/post/${data[0].id}`);
+      navigate("/"); // 글 목록으로 이동 (단일 글 페이지로 이동하려면 SELECT 정책 필요)
 
       // 폼 초기화
       setTitle("");
