@@ -1,56 +1,53 @@
 // src/pages/PostDetail.jsx
-import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../firebase";
-import { formatDistanceToNow } from "date-fns"; // npm install date-fns
+import { useEffect, useState } from "react";
+import { supabase } from "../supabaseClient";
 
 export default function PostDetail() {
-  const { id } = useParams(); // URL에서 id 가져오기
+  const { id } = useParams();
   const navigate = useNavigate();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!id) return;
-
     const fetchPost = async () => {
       try {
-        const docRef = doc(db, "posts", id);
-        const snap = await getDoc(docRef);
-        if (snap.exists()) {
-          setPost({ id: snap.id, ...snap.data() });
+        const { data, error } = await supabase
+          .from("posts")
+          .select("*")
+          .eq("id", id)
+          .single();
+
+        if (error) throw error;
+
+        if (data) {
+          setPost(data);
         } else {
-          setPost(null);
+          alert("게시글을 찾을 수 없습니다.");
+          navigate("/");
         }
-      } catch (err) {
-        console.error("Failed to fetch post:", err);
+      } catch (error) {
+        console.error("Error fetching post:", error);
+        alert("게시글을 불러오는 중 오류가 발생했습니다.");
+        navigate("/");
       } finally {
         setLoading(false);
       }
     };
 
     fetchPost();
-  }, [id]);
+  }, [id, navigate]);
 
-  if (loading) return <div>불러오는 중...</div>;
-  if (!post) return <div>게시글을 찾을 수 없습니다.</div>;
-
-  const createdAtDate = post.createdAt ? post.createdAt.toDate() : null;
+  if (loading) return <p>로딩 중...</p>;
+  if (!post) return null;
 
   return (
-    <div className="post-detail">
-      <button onClick={() => navigate(-1)}>← 뒤로</button>
-      <h1>{post.title}</h1>
-      <div>
-        <span>{post.category}</span> · <strong>{post.author || "익명"}</strong>
-      </div>
-      <div>
-        {createdAtDate
-          ? formatDistanceToNow(createdAtDate, { addSuffix: true })
-          : ""}
-      </div>
-      <article>{post.content}</article>
+    <div>
+      <h2>{post.title}</h2>
+      <p>작성자: {post.author}</p>
+      <p>카테고리: {post.category}</p>
+      <p>묵상일차: {post.meditation_day}</p>
+      <p>{post.content}</p>
     </div>
   );
 }
