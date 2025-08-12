@@ -6,9 +6,12 @@ import { supabase } from "../supabaseClient";
 
 export default function PostList() {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   // 게시글 불러오기
   const fetchPosts = async () => {
+    setLoading(true);
+
     const { data, error } = await supabase
       .from("posts")
       .select("*")
@@ -16,9 +19,12 @@ export default function PostList() {
 
     if (error) {
       console.error("게시글 불러오기 오류:", error);
-      return;
+      setPosts([]);
+    } else {
+      setPosts(data);
     }
-    setPosts(data);
+
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -40,6 +46,8 @@ export default function PostList() {
       supabase.removeChannel(channel);
     };
   }, []);
+
+  if (loading) return <p>로딩 중...</p>;
 
   return (
     <div className="post-list">
