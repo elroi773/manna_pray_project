@@ -27,7 +27,7 @@
 | 구분           | 기술/서비스              | 설명                                         |
 | -------------- | ----------------------- | -------------------------------------------- |
 | 프론트엔드     | Next.js (React 18)      | React 기반 SSR 및 SPA 기능 제공               |
-| 인증           | NextAuth.js             | 카카오, 구글 OAuth 로그인 처리                |
+| 인증           | NextAuth.js             | 구글 OAuth 로그인 처리                        |
 | 백엔드/API     | Next.js API Route       | 프론트와 통합된 서버 API 구현                  |
 | 데이터베이스   | Supabase (PostgreSQL)   | 관계형 DB + 인증 + 실시간 기능 제공            |
 | 실시간 기능    | Supabase Realtime       | 댓글 등 실시간 반영 지원                        |
@@ -49,12 +49,3 @@
 
 ---
 
-## 배포 방법
-
-1. GitHub 저장소에 코드 Push
-2. Vercel에서 GitHub 저장소 연결 후 자동 배포 설정
-3. `.env` 파일 또는 Vercel 환경 변수에 Supabase URL 및 키 등록
-4. 도메인 연결 및 SSL 설정 (자동으로 지원됨)
-5. 배포 상태 및 로그 모니터링
-
----
