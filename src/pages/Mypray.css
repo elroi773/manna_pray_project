@@ -1,61 +1,107 @@
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+:root {
+  --gap: 20px;
+  --radius: 16px;
+  --primary-purple: #8A2BE2;
+  --accent-pink: #FF1493;
+  --text-dark: #2e2e2e;
+  --text-light: #777;
+  --bg-light: #faf8fc;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Pretendard-Regular", sans-serif;
+}
+
+body {
+  background: var(--bg-light);
+  color: var(--text-dark);
+}
+
 .pray-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    font-family: "Helvetica Neue", sans-serif;
-    background-color: #fffdf8;
-    min-height: 100vh;
-  }
-  
-  .title {
-    text-align: center;
-    font-size: 2.5rem;
-    color: #3b3b3b;
-    margin-bottom: 40px;
-  }
-  
-  .pray-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .pray-card {
-    background-color: #fff;
-    border-left: 5px solid #ffb347;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.05);
-  }
-  
-  .pray-card h3 {
-    margin: 0 0 10px;
-    color: #444;
-  }
-  
-  .pray-card p {
-    margin: 0;
-    color: #666;
-    line-height: 1.6;
-    white-space: pre-wrap;
-  }
-  
-  .write-button {
-    margin-top: 40px;
-    display: block;
-    width: 100%;
-    padding: 15px;
-    background-color: #ffa94d;
-    color: white;
-    font-size: 1.1rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  .write-button:hover {
-    background-color: #f08c00;
-  }
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.pray-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.pray-title {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--primary-purple), var(--accent-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.pray-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin-top: 6px;
+}
+
+.pray-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.pray-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.pray-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+.pray-date {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--primary-purple);
+}
+
+.pray-text {
+  font-size: 1rem;
+  color: var(--text-dark);
+  line-height: 1.5;
+}
+
+.write-button {
+  margin-top: 30px;
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--primary-purple), var(--accent-pink));
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.write-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(138, 43, 226, 0.25);
+}
   
