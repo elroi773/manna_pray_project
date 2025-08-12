@@ -1,28 +1,44 @@
-// src/pages/PostList.jsx
+// src/components/PostList.jsx
 import React, { useEffect, useState } from "react";
 import PostCard from "./PostCard";
 import "./PostList.css";
-import { db } from "../firebase";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { supabase } from "../supabaseClient";
 
 export default function PostList() {
   const [posts, setPosts] = useState([]);
 
+  // 게시글 불러오기
+  const fetchPosts = async () => {
+    const { data, error } = await supabase
+      .from("posts")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.error("게시글 불러오기 오류:", error);
+      return;
+    }
+    setPosts(data);
+  };
+
   useEffect(() => {
-    const q = query(
-      collection(db, "posts"),
-      orderBy("createdAt", "desc")
-    );
+    fetchPosts();
 
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const postData = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setPosts(postData);
-    });
+    // 실시간 구독 (추가/수정/삭제 반영)
+    const channel = supabase
+      .channel("posts-changes")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "posts" },
+        () => {
+          fetchPosts();
+        }
+      )
+      .subscribe();
 
-    return () => unsubscribe();
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   return (
