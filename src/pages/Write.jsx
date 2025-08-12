@@ -1,11 +1,10 @@
 // src/pages/Write.jsx
 import React, { useState } from "react";
 import "./Write.css";
-import { db } from "../firebase";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { supabase } from "../supabaseClient";
 import { useNavigate } from "react-router-dom";
 
-export default function Write() {
+export default function Write({ loggedInUser }) {
   const [category, setCategory] = useState("전체");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -13,38 +12,44 @@ export default function Write() {
   const [customId, setCustomId] = useState("");
   const [selectedDay, setSelectedDay] = useState("1일차");
 
-  const loggedInUser = "mirim123 수정예정"; // TODO: 실제 로그인 유저 정보로 변경
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!loggedInUser) {
+      alert("로그인 후 글을 작성할 수 있습니다.");
+      navigate("/login");
+      return;
+    }
+
     const postData = {
       category,
       title,
       content,
-      meditationDay: selectedDay,
+      meditation_day: selectedDay,
       author: useCurrentId ? loggedInUser : customId,
-      createdAt: serverTimestamp(),
+      created_at: new Date().toISOString(), // Supabase에 맞게 ISO 날짜로
     };
 
     try {
-      // Firestore에 저장
-      const docRef = await addDoc(collection(db, "posts"), postData);
+      const { data, error } = await supabase.from("posts").insert([postData]);
+      if (error) throw error;
+
       alert("게시글이 성공적으로 저장되었습니다!");
+      navigate(`/post/${data[0].id}`);
 
-      // 해당 글 상세 페이지로 이동
-      navigate(`/post/${docRef.id}`);
-
-      // 입력값 초기화
+      // 폼 초기화
       setTitle("");
       setContent("");
       setCustomId("");
       setCategory("전체");
       setSelectedDay("1일차");
       setUseCurrentId(true);
+
     } catch (error) {
-      console.error("Error adding document: ", error);
+      console.error("Error adding post: ", error);
+      alert("저장 중 오류가 발생했습니다.");
     }
   };
 
@@ -54,7 +59,10 @@ export default function Write() {
       <form onSubmit={handleSubmit}>
         <label>
           카테고리:
-          <select value={category} onChange={(e) => setCategory(e.target.value)}>
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
             <option value="전체">전체</option>
             <option value="묵상">묵상</option>
             <option value="개인">개인</option>
@@ -68,14 +76,15 @@ export default function Write() {
 
         <label>
           변화산 몇일차인가요?
-          <select value={selectedDay} onChange={(e) => setSelectedDay(e.target.value)}>
-            <option value="1일차">1일차</option>
-            <option value="2일차">2일차</option>
-            <option value="3일차">3일차</option>
-            <option value="4일차">4일차</option>
-            <option value="5일차">5일차</option>
-            <option value="6일차">6일차</option>
-            <option value="7일차">7일차</option>
+          <select
+            value={selectedDay}
+            onChange={(e) => setSelectedDay(e.target.value)}
+          >
+            {[...Array(7)].map((_, i) => (
+              <option key={i} value={`${i + 1}일차`}>
+                {i + 1}일차
+              </option>
+            ))}
           </select>
         </label>
 
@@ -109,7 +118,9 @@ export default function Write() {
               checked={useCurrentId}
               onChange={() => setUseCurrentId(true)}
             />
-            <label htmlFor="useCurrent">{loggedInUser} (현재 로그인 ID)</label>
+            <label htmlFor="useCurrent">
+              {loggedInUser || "로그인 필요"} (현재 로그인 ID)
+            </label>
           </div>
           <div>
             <input
