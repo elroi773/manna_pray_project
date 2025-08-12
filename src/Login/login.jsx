@@ -1,34 +1,40 @@
-// src/Login/login.jsx
+// src/Login/Login.jsx
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth, provider } from "../firebase";
-import { signInWithPopup, onAuthStateChanged } from "firebase/auth";
+import { supabase } from "../supabaseClient";
 import "./login.css";
 
 function Login() {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
-  // Firebase 로그인 상태 감지
+  // 로그인 상태 감지
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-      if (firebaseUser) {
-        setUser(firebaseUser);
-      } else {
-        setUser(null);
-      }
+    const getUser = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setUser(session?.user || null);
+    };
+    getUser();
+
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user || null);
     });
 
-    return () => unsubscribe();
+    return () => {
+      listener.subscription.unsubscribe();
+    };
   }, []);
 
+  // 구글 로그인
   const handleGoogleLogin = async () => {
-    try {
-      const result = await signInWithPopup(auth, provider);
-      console.log("로그인 성공:", result.user);
-      navigate("/"); // 로그인 성공하면 홈으로 이동
-    } catch (err) {
-      console.error("로그인 실패:", err);
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: window.location.origin, // 로그인 후 돌아올 주소
+      },
+    });
+    if (error) {
+      console.error("로그인 실패:", error);
     }
   };
 
@@ -46,7 +52,8 @@ function Login() {
           </>
         ) : (
           <div>
-            <h2>환영합니다, {user.displayName || user.email}님!</h2>
+            <h2>환영합니다, {user.user_metadata?.full_name || user.email}님!</h2>
+            <button onClick={() => supabase.auth.signOut()}>로그아웃</button>
           </div>
         )}
       </div>
