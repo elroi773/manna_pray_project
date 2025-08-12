@@ -1,14 +1,11 @@
-// pages/Home.jsx
+// src/pages/Home.jsx
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../firebase";
-import { onAuthStateChanged, signOut } from "firebase/auth";
-
+import { supabase } from "../supabaseClient";
 import "../App.css";
 import useScrollFadeIn from "../hooks/useScrollFadeIn";
 
 import logo from "../logo.png";
-
 import CategoryButtons from "../componets/CategoryButtons";
 import PostList from "../componets/PostList";
 import MyRecords from "../componets/MyRecords";
@@ -23,19 +20,26 @@ export default function Home() {
   const fadeInRecords = useScrollFadeIn("up", 1, 0.6);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-      if (firebaseUser) {
-        setUser(firebaseUser);
-      } else {
-        setUser(null);
-      }
+    // 현재 세션 가져오기
+    const getUser = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setUser(session?.user || null);
+    };
+    getUser();
+
+    // 로그인 상태 변경 감지
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user || null);
     });
-    return () => unsubscribe();
+
+    return () => {
+      listener.subscription.unsubscribe();
+    };
   }, []);
 
   const handleLogout = async () => {
     try {
-      await signOut(auth);
+      await supabase.auth.signOut();
       setUser(null);
     } catch (error) {
       console.error("로그아웃 실패:", error);
@@ -50,7 +54,7 @@ export default function Home() {
         {user ? (
           <>
             <span className="user-info">
-              {user.displayName || user.email} 님
+              {user.user_metadata?.full_name || user.email} 님
             </span>
             &nbsp;|&nbsp;
             <button className="menu-button" onClick={handleLogout}>
