@@ -8,7 +8,7 @@ const youtubeVideos = [
     day: "1일차",
     src: "https://www.youtube.com/embed/Gi5pEhruJQ8",
     title: "다시 일어서는 감사",
-    myReflection: "하나님의 은혜로 다시 일어서는 힘을 얻었습니다. 감사함으로 하루를 살아가겠습니다.",
+    myReflection: "",
   },
   {
     day: "2일차",
@@ -62,6 +62,20 @@ export default function MeditationRecords() {
 
   return (
     <div className="container">
+      <button
+        onClick={() => navigate(-1)}
+        style={{
+          backgroundColor: "#6C6CD0",
+          color: "#FFFFFF",
+          border: "none",
+          padding: "6px 12px",
+          borderRadius: "6px",
+          cursor: "pointer",
+          marginBottom: "12px",
+        }}
+      >
+        ← 돌아가기
+      </button>
       <h1>나의 묵상 기록</h1>
       <div className="scroll-row">
         {youtubeVideos.map((video, index) => (
