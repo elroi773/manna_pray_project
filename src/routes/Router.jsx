@@ -51,7 +51,6 @@ export default function AppRouter() {
         <Route path="category/:categoryName" element={<CategoryPage />} />
         <Route path="write" element={<Write loggedInUser={loggedInUser} />} />
       </Route>
-      <Route path="post/:id" element={<PostDetail />} />
     </Routes>
   );
 }
