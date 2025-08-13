@@ -1,3 +1,4 @@
+/* 기존 설정 유지 */
 @font-face {
   font-family: "Pretendard-Regular";
   src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
@@ -8,11 +9,17 @@
 :root {
   --gap: 20px;
   --radius: 16px;
-  --primary-purple: #8A2BE2;
-  --accent-pink: #FF1493;
-  --text-dark: #2e2e2e;
-  --text-light: #777;
-  --bg-light: #faf8fc;
+  --primary-purple: #6C6CD0;
+  --accent-pink: #E9789C;
+  --text-dark: #2D2A2B;
+  --text-light: #CC4787;
+  --bg-light: #FFFFFF;
+
+  /* 카테고리 색상 */
+  --cat-purple: #6C6CD0;
+  --cat-pink: #E9789C;
+  --cat-gray: #2D2A2B;
+  --cat-white: #FFFFFF;
 }
 
 * {
@@ -27,6 +34,7 @@ body {
   color: var(--text-dark);
 }
 
+/* 컨테이너 */
 .pray-container {
   max-width: 720px;
   margin: 0 auto;
@@ -52,46 +60,84 @@ body {
   margin-top: 6px;
 }
 
+/* 리스트 */
 .pray-list {
   display: flex;
   flex-direction: column;
   gap: var(--gap);
 }
 
-.pray-card {
-  background: #fff;
-  border-radius: var(--radius);
-  padding: 20px 24px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+/* 리스트 레이아웃 */
+.pray-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  gap: 16px;
+}
+
+/* 카드 스타일 */
+.pray-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .pray-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
-.pray-date {
-  font-size: 0.85rem;
-  font-weight: 500;
+/* 카드 상단 (제목+날짜) */
+.pray-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.pray-card-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
   color: var(--primary-purple);
 }
 
+.pray-date {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+/* 내용 */
+.pray-content {
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  line-height: 1.4;
+  margin-bottom: 6px;
+  white-space: pre-line;
+}
+
+/* 묵상일 */
+.pray-day {
+  font-size: 0.8rem;
+  color: var(--accent-pink);
+  font-weight: 500;
+}
+
+
+/* 카드 본문 */
 .pray-text {
   font-size: 1rem;
   color: var(--text-dark);
   line-height: 1.5;
 }
 
+/* 버튼 */
 .write-button {
   margin-top: 30px;
   width: 100%;
   padding: 14px;
   background: linear-gradient(135deg, var(--primary-purple), var(--accent-pink));
-  color: white;
+  color: var(--bg-light);
   font-size: 1rem;
   font-weight: 600;
   border: none;
@@ -102,6 +148,56 @@ body {
 
 .write-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(138, 43, 226, 0.25);
+  box-shadow: 0 6px 18px rgba(108, 108, 208, 0.25);
 }
-  
+
+/* 제목 스타일 */
+.pray-title-text {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+/* 묵상일 표시 */
+.pray-meditation {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  font-style: italic;
+}
+
+/* 카드 간격 & 정렬 */
+.pray-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 카드 스타일 (기존 .pray-card 확장) */
+.pray-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pray-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+}
+
+/* 카드 헤더 (제목 + 날짜) */
+.pray-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+/* 내용 */
+.pray-text {
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  line-height: 1.4;
+  white-space: pre-line; /* 줄바꿈 유지 */
+}
