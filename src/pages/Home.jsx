@@ -11,9 +11,11 @@ import PostList from "../componets/PostList";
 import MyRecords from "../componets/MyRecords";
 import Footer from "../componets/Footer";
 
+
 export default function Home() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const [posts, setPosts] = useState([]); // 글 데이터 상태 추가
 
   const fadeInPray = useScrollFadeIn("up", 1, 0);
   const fadeInMeditation = useScrollFadeIn("up", 1, 0.3);
@@ -35,6 +37,24 @@ export default function Home() {
     return () => {
       listener.subscription.unsubscribe();
     };
+  }, []);
+
+  // 글 목록 가져오기
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const { data, error } = await supabase
+        .from("posts")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        console.error("게시글 불러오기 오류:", error);
+      } else {
+        setPosts(data);
+      }
+    };
+
+    fetchPosts();
   }, []);
 
   const handleLogout = async () => {
@@ -73,22 +93,19 @@ export default function Home() {
           </>
         )}
       </div>
-
-      <p>
-        너희는 내게 부르짖으며 와서 내게 기도 하면 <br />
-        내가 너희를 들을 것이요
-      </p>
-      <p id="chapter">예레미야 29 : 12</p>
+        <h1>Faith Time</h1>
+      <p id="chapter">내게 능력 주시는 자 안에서 내가 모든 것을 할 수 있느니라<br/>빌립보서 4 : 13</p> 
 
       <CategoryButtons />
+      
       <div className="Cards">
         <div className="prayTitle" {...fadeInPray}>
           <h2>공감을 많이 받은 기도제목</h2>
-          <PostList />
+          <PostList posts={posts} /> {/* 불러온 데이터 전달 */}
         </div>
         <div className="prayTitle" {...fadeInMeditation}>
           <h2>공감을 많이 받은 묵상</h2>
-          <PostList />
+          <PostList posts={posts} /> {/* 필요 시 필터링 */}
         </div>
         <div className="prayTitle" {...fadeInRecords}>
           <h2>나의 기록</h2>
