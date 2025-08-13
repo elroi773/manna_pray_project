@@ -7,7 +7,6 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import App from "./App";
 import Login from "./Login/login";
 import Join from "./Join/join";
-import Post from "./Post";
 import Today from "./pages/today";
 import Mypray from "./pages/Mypray";
 import MyContemplation from "./pages/MyContemplation";
@@ -22,7 +21,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <BrowserRouter>
         <Routes>
           <Route path="/*" element={<App />} />
-          <Route path="/post/:id" element={<Post />} />
           <Route path="/login" element={<Login />} />
           <Route path="/join" element={<Join />} />
           <Route path="/today" element={<Today />} />
