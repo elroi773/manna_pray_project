@@ -1,6 +1,7 @@
 @font-face {
   font-family: "Pretendard-Regular";
-  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
   font-weight: 400;
   font-style: normal;
 }
@@ -9,21 +10,25 @@
   --gap: 24px;
   --radius: 20px;
   --overlay: rgba(138, 43, 226, 0.45); /* 보라색 오버레이 */
-  --primary-purple: #8A2BE2; /* 메인 보라색 */
-  --accent-pink: #FF1493; /* 메인 분홍색 */
-  --light-purple: #DDA0DD; /* 연한 보라색 */
-  --light-pink: #FFB6C1; /* 연한 분홍색 */
+  --primary-purple: #8a2be2; /* 메인 보라색 */
+  --accent-pink: #ff1493; /* 메인 분홍색 */
+  --light-purple: #dda0dd; /* 연한 보라색 */
+  --light-pink: #ffb6c1; /* 연한 분홍색 */
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Pretendard-Regular", "Poppins", "Noto Sans KR", sans-serif;
+  font-family: "Pretendard-Regular";
 }
 
 body {
-  background: linear-gradient(135deg, #f8f4ff 0%, #fff0f8 100%); /* 연한 보라-분홍 그라데이션 */
+  background: linear-gradient(
+    135deg,
+    #f8f4ff 0%,
+    #fff0f8 100%
+  ); /* 연한 보라-분홍 그라데이션 */
   color: #4a1a4a; /* 진한 보라색 텍스트 */
 }
 
@@ -55,7 +60,9 @@ body {
   text-align: center;
   color: var(--accent-pink);
 }
-
+h1{
+  margin-top: 15px;
+}
 .menu {
   position: absolute;
   top: 50px;
@@ -82,20 +89,24 @@ body {
 }
 
 .menu-button {
-  background: linear-gradient(135deg, var(--primary-purple) 0%, var(--accent-pink) 100%);
-  color: white;
+  background: #f8f4ff;
+  color: #8a2be2;
   border: none;
   border-radius: 12px;
   padding: 12px 20px;
   font-size: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+  box-shadow: 0 4px 10px rgba(138, 43, 226, 0.3);
   font-weight: 600;
 }
 
 .menu-button:hover {
-  background: linear-gradient(135deg, var(--accent-pink) 0%, var(--primary-purple) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--accent-pink) 0%,
+    var(--primary-purple) 100%
+  );
   transform: scale(1.05) translateY(-2px);
   box-shadow: 0 6px 20px rgba(255, 20, 147, 0.4);
 }
@@ -107,16 +118,16 @@ body {
 /* ===== 타이틀 ===== */
 .prayTitle {
   padding: 50px 0 0 30px;
-  background: linear-gradient(90deg, var(--primary-purple), var(--accent-pink));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .prayTitle h2 {
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 700;
-  text-shadow: 2px 2px 4px rgba(138, 43, 226, 0.2);
+  /* text-shadow: 2px 2px 4px rgba(138, 43, 226, 0.2); */
+  -webkit-background-clip: text;
+  /* -webkit-text-fill-color: transparent; */
+  background: linear-gradient(90deg, var(--primary-purple), var(--accent-pink));
+  background-clip: text;
 }
 
 /* ===== 카드 레이아웃 ===== */
@@ -208,11 +219,11 @@ body {
     width: 160px;
     margin: 10px 0 0 1px;
   }
-
   .menu {
-    top: 40px;
+    top: 25px;
     right: 15px;
     margin-right: 5px;
+    gap: 8px;
   }
 
   .menu a {
@@ -234,6 +245,6 @@ body {
   }
 
   .prayTitle h2 {
-    font-size: 18px;
+    font-size: 20px;
   }
 }
