@@ -59,6 +59,20 @@ export default function Write({ loggedInUser }) {
 
   return (
     <div className="write-post-container">
+      <button
+        onClick={() => navigate(-1)}
+        style={{
+          backgroundColor: "#6C6CD0",
+          color: "#FFFFFF",
+          border: "none",
+          padding: "6px 12px",
+          borderRadius: "6px",
+          cursor: "pointer",
+          marginBottom: "12px",
+        }}
+      >
+        ← 돌아가기
+      </button>
       <h2>글쓰기</h2>
       <form onSubmit={handleSubmit}>
         <label>
