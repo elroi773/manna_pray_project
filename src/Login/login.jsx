@@ -27,12 +27,18 @@ function Login() {
 
   // 구글 로그인
   const handleGoogleLogin = async () => {
+    const redirectUrl =
+      process.env.NODE_ENV === "production"
+        ? "https://manna-pray-project.vercel.app"
+        : "http://localhost:3000";
+
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: window.location.origin, // 로그인 후 돌아올 주소
+        redirectTo: redirectUrl, // 환경에 따라 리다이렉트
       },
     });
+
     if (error) {
       console.error("로그인 실패:", error);
     }
