@@ -1,71 +1,126 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import PostList from "../componets/PostList";
+import { supabase } from "../supabaseClient";
 import "./MyContemplation.css";
-
-const youtubeVideos = [
-  {
-    day: "1일차",
-    src: "https://www.youtube.com/embed/Gi5pEhruJQ8",
-    title: "다시 일어서는 감사",
-    myReflection: "",
-  },
-  {
-    day: "2일차",
-    src: null,
-    title: "coming soon",
-    myReflection: "",
-  },
-  {
-    day: "3일차",
-    src: null,
-    title: "coming soon",
-    myReflection: "",
-  },
-  {
-    day: "4일차",
-    src: null,
-    title: "coming soon",
-    myReflection: "",
-  },
-  {
-    day: "5일차",
-    src: null,
-    title: "coming soon",
-    myReflection: "",
-  },
-  {
-    day: "6일차",
-    src: null,
-    title: "coming soon",
-    myReflection: "",
-  },
-  {
-    day: "7일차",
-    src: null,
-    title: "coming soon",
-    myReflection: "",
-  },
-];
 
 export default function MeditationRecords() {
   const [selectedDay, setSelectedDay] = useState(null);
+  const [myReflection, setMyReflection] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [loggedInUser, setLoggedInUser] = useState(null); 
   const navigate = useNavigate();
 
-  const handleSelect = (index) => {
+  // 로그인 user 정보 가져오기
+  useEffect(() => {
+    const fetchUserName = async () => {
+      const { data: { user }, error } = await supabase.auth.getUser();
+
+      if (error) {
+        console.error("사용자 불러오기 실패:", error);
+        return;
+      }
+
+      if (!user) {
+        console.log("로그인된 사용자 없음");
+        return;
+      }
+
+      const name = user.user_metadata?.full_name || user.user_metadata?.name || "알 수 없음";
+      console.log("로그인 사용자 이름:", name);
+      setLoggedInUser(name);
+    };
+
+    fetchUserName();
+  }, []);
+
+  const youtubeVideos = [
+    {
+      day: "1일차",
+      src: "https://www.youtube-nocookie.com/embed/Gi5pEhruJQ8?rel=0&modestbranding=1&controls=1&showinfo=0&iv_load_policy=3",
+      title: "다시 일어서는 감사",
+    },
+    { day: "2일차", src: null, title: "coming soon" },
+    { day: "3일차", src: null, title: "coming soon" },
+    { day: "4일차", src: null, title: "coming soon" },
+    { day: "5일차", src: null, title: "coming soon" },
+    { day: "6일차", src: null, title: "coming soon" },
+    { day: "7일차", src: null, title: "coming soon" },
+  ];
+
+  const handleSelect = async (index) => {
+    console.log(`=== ${youtubeVideos[index].day} 선택 ===`);
     setSelectedDay(index);
+
+    if (!loggedInUser) {
+      alert("로그인이 필요합니다.");
+      navigate("/login");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const { data, error } = await supabase
+        .from("posts")
+        .select("*")
+        .eq("author", loggedInUser)
+        .eq("category", "묵상")
+        .eq("meditation_day", youtubeVideos[index].day)
+        .order("created_at", { ascending: false });
+
+      console.log("Supabase 쿼리 결과:", { data, error });
+
+      if (error) {
+        console.error("내 묵상글 불러오기 에러:", error);
+        alert("묵상글을 불러오는 중 오류가 발생했습니다.");
+        return;
+      }
+
+      setMyReflection(data || []);
+
+      if (data.length > 0) {
+        console.log(`${youtubeVideos[index].day} 묵상글 발견:`, data[0].content?.substring(0, 50) + "...");
+      } else {
+        console.log(`${youtubeVideos[index].day} 묵상글이 없습니다.`);
+      }
+
+    } catch (err) {
+      console.error("예기치 못한 에러:", err);
+      alert("예기치 못한 오류가 발생했습니다.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleWriteClick = () => {
-    navigate("/write");
+    if (selectedDay !== null) {
+      navigate("/write", {
+        state: {
+          meditation_day: youtubeVideos[selectedDay].day,
+        },
+      });
+    }
+  };
+
+  const handleEditClick = () => {
+    if (myReflection.length > 0) {
+      navigate("/write", {
+        state: {
+          editMode: true,
+          postId: myReflection[0].id,
+          meditation_day: youtubeVideos[selectedDay].day,
+          content: myReflection[0].content,
+        },
+      });
+    }
   };
 
   return (
-    <div className="container">
+    <div className="i">
       <button
         onClick={() => navigate(-1)}
         style={{
-          backgroundColor: "#6C6CD0",
+          backgroundColor: "#171617",
           color: "#FFFFFF",
           border: "none",
           padding: "6px 12px",
@@ -76,7 +131,10 @@ export default function MeditationRecords() {
       >
         ← 돌아가기
       </button>
+
       <h1>나의 묵상 기록</h1>
+
+      {/* 영상 목록 */}
       <div className="scroll-row">
         {youtubeVideos.map((video, index) => (
           <div
@@ -90,8 +148,16 @@ export default function MeditationRecords() {
                 src={video.src}
                 title={video.title}
                 frameBorder="0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
+                style={{
+                  border: 'none',
+                  width: '100%',
+                  height: '200px',
+                  borderRadius: '8px'
+                }}
               ></iframe>
             ) : (
               <div className="coming-soon">coming soon</div>
@@ -100,22 +166,50 @@ export default function MeditationRecords() {
         ))}
       </div>
 
-      {selectedDay !== null && (
-        <div className="reflection-section">
-          <h2>{youtubeVideos[selectedDay].day} 묵상</h2>
-          {youtubeVideos[selectedDay].myReflection ? (
-            <p className="my-reflection emphasized">{youtubeVideos[selectedDay].myReflection}</p>
-          ) : (
-            <div className="my-reflection empty">
-              <p>아직 묵상글이 없습니다.</p>
-              <button className="write-button" onClick={handleWriteClick}>
-                ✍️ 묵상 적으러 가기
-              </button>
-            </div>
-          )}
+      <br /><br />
 
-          <h3>다른 사람들의 묵상글</h3>
-          <PostList />
+      {loading && (
+        <div className="loading">
+          <p>묵상글을 불러오는 중...</p>
+        </div>
+      )}
+
+      {selectedDay !== null && !loading && myReflection.length > 0 && (
+        <div className="reflection-section">
+          <h2>📝 {youtubeVideos[selectedDay].day} 나의 묵상</h2>
+          <div className="my-reflection emphasized">
+            <p>{myReflection[0].content}</p>
+            <div className="reflection-actions">
+              <small>
+                작성일: {new Date(myReflection[0].created_at).toLocaleDateString('ko-KR')}
+                {myReflection[0].updated_at && myReflection[0].updated_at !== myReflection[0].created_at && (
+                  <span> (수정됨: {new Date(myReflection[0].updated_at).toLocaleDateString('ko-KR')})</span>
+                )}
+              </small>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {selectedDay !== null && !loading && myReflection.length === 0 && (
+        <div className="my-reflection empty">
+          <p>아직 <strong>{youtubeVideos[selectedDay].day}</strong> 묵상글이 없습니다.</p>
+          <p style={{ fontSize: '14px', color: '#666', marginBottom: '15px' }}>
+            영상을 보고 묵상한 내용을 기록해보세요.
+          </p>
+          <button className="write-button" onClick={handleWriteClick}>
+            ✍️ {youtubeVideos[selectedDay].day} 묵상 적으러 가기
+          </button>
+        </div>
+      )}
+
+      {selectedDay === null && (
+        <div style={{
+          textAlign: 'center',
+          padding: '40px 20px',
+          color: '#666'
+        }}>
+          <p>📹 위의 영상을 선택하여 나의 묵상 기록을 확인해보세요.</p>
         </div>
       )}
     </div>
