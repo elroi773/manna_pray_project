@@ -1,23 +1,36 @@
 // src/pages/Write.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Write.css";
 import { supabase } from "../supabaseClient";
 import { useNavigate } from "react-router-dom";
 
-export default function Write({ loggedInUser }) {
+export default function Write() {
   const [category, setCategory] = useState("전체");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [useCurrentId, setUseCurrentId] = useState(true);
   const [customId, setCustomId] = useState("");
   const [selectedDay, setSelectedDay] = useState("1일차");
+  const [userName, setUserName] = useState("");
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // 로그인 정보 가져오기
+    const fetchUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        // 구글 로그인 이름 가져오기
+        const name = user.user_metadata?.full_name || user.user_metadata?.name || "알 수 없음";
+        setUserName(name);
+      }
+    };
+    fetchUser();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // 로그인 여부 확인
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
       alert("로그인 후 글을 작성할 수 있습니다.");
@@ -30,19 +43,19 @@ export default function Write({ loggedInUser }) {
       title,
       content,
       meditation_day: selectedDay,
-      author: useCurrentId ? user.id : customId, // UID 사용
+      author: useCurrentId ? userName : customId,
       created_at: new Date().toISOString(),
     };
 
     try {
       const { error } = await supabase
         .from("posts")
-        .insert([postData]); // .select() 제거
+        .insert([postData]);
 
       if (error) throw error;
 
       alert("게시글이 성공적으로 저장되었습니다!");
-      navigate("/"); // 글 목록으로 이동 (단일 글 페이지로 이동하려면 SELECT 정책 필요)
+      navigate("/");
 
       // 폼 초기화
       setTitle("");
@@ -121,7 +134,7 @@ export default function Write({ loggedInUser }) {
         </label>
 
         <label>
-          작성자 ID:
+          작성자 이름:
           <div>
             <input
               type="radio"
@@ -131,7 +144,7 @@ export default function Write({ loggedInUser }) {
               onChange={() => setUseCurrentId(true)}
             />
             <label htmlFor="useCurrent">
-              {loggedInUser || "로그인 필요"} (현재 로그인 ID)
+              {userName || "로그인 필요"} (현재 로그인 이름)
             </label>
           </div>
           <div>
@@ -142,13 +155,13 @@ export default function Write({ loggedInUser }) {
               checked={!useCurrentId}
               onChange={() => setUseCurrentId(false)}
             />
-            <label htmlFor="useCustom">다른 ID 사용</label>
+            <label htmlFor="useCustom">다른 이름 사용</label>
             {!useCurrentId && (
               <input
                 type="text"
                 value={customId}
                 onChange={(e) => setCustomId(e.target.value)}
-                placeholder="사용자 ID 입력"
+                placeholder="사용자 이름 입력"
                 required
               />
             )}
