@@ -1,6 +1,5 @@
 .recordsWrapper {
   padding: 32px 16px;
-  background: #fafafa;
   min-height: 100vh;
   font-family: "Pretendard-Regular";
 }
@@ -29,12 +28,11 @@
   overflow: hidden;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
   transition: transform 0.3s ease;
-  
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: transparent;
-  
+
+  /* 배경 이미지를 카드에 꽉 채우기 */
+  background-size: cover; /* 비율 유지하며 꽉 채움 */
+  background-position: center; /* 가운데 정렬 */
+  background-repeat: no-repeat; /* 반복 제거 */
   position: relative;
   margin: 0;
   padding: 0;
@@ -47,15 +45,15 @@
 
 /* 데스크톱 배경 이미지 - public 폴더 기준 절대 경로 */
 #prayer {
-  background-image: url('./img/MyRecord1.png');
+  background-image: url("./img/MyRecord1.png");
 }
 
 #bible {
-  background-image: url('./img/MyRecord2.png');
+  background-image: url("./img/MyRecord2.png");
 }
 
 #contempla {
-  background-image: url('./img/MyRecord3.png');
+  background-image: url("./img/MyRecord3.png");
 }
 
 /* 오버레이(필터) */
@@ -63,7 +61,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.10);
+  background: rgba(0, 0, 0, 0.1);
   z-index: 0;
 }
 
@@ -124,35 +122,35 @@
     padding: 0 16px;
     height: 400px; /* 전체 높이 고정 */
   }
-  
+
   #prayer {
     grid-area: prayer;
     /* aspect-ratio 제거하고 grid로 크기 조정 */
-    background-image: url('./img/MyRecord_Mobile1.png') !important;
+    background-image: url("./img/MyRecord_Mobile1.png") !important;
   }
-  
+
   #bible {
     grid-area: bible;
     /* aspect-ratio 제거하고 grid로 크기 조정 */
-    background-image: url('./img/MyRecord_Mobile2.png') !important;
+    background-image: url("./img/MyRecord_Mobile2.png") !important;
   }
-  
+
   #contempla {
     grid-area: contem;
     /* aspect-ratio 제거하고 grid로 크기 조정 */
-    background-image: url('./img/MyRecord_Mobile3.png') !important;
+    background-image: url("./img/MyRecord_Mobile3.png") !important;
   }
-  
+
   .card {
     width: 100%;
     height: 100%; /* grid 셀을 가득 채우도록 */
     max-width: none;
   }
-  
+
   .recordsWrapper .cardContent h2 {
     font-size: 1.3rem;
   }
-  
+
   .recordsWrapper .cardContent p {
     font-size: 0.85rem;
   }
@@ -162,16 +160,16 @@
   .recordsWrapper {
     padding: 16px 12px;
   }
-  
+
   .recordsGrid {
     gap: 12px;
     padding: 0 8px;
   }
-  
+
   .recordsWrapper .cardContent h2 {
     font-size: 0.8rem;
   }
-  
+
   .recordsWrapper .cardContent p {
     font-size: 0.8rem;
   }
