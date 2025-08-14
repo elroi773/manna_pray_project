@@ -1,12 +1,12 @@
+// src/components/PostCard.jsx
 import React, { useMemo, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { supabase } from '../supabaseClient';
+import { supabase } from "../supabaseClient";
 import "./PostCard.css";
 
 export default function PostCard({ post }) {
   if (!post) return null;
-
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const colors = ["#E9789C", "#CC4787", "#FFFFFF", "#6C6CD0"];
   const circleColor = useMemo(
@@ -18,15 +18,16 @@ export default function PostCard({ post }) {
   const [liked, setLiked] = useState(false);
   const [authorName, setAuthorName] = useState("");
 
-  // author 정보 가져오기
+  // 작성자 닉네임 가져오기
   useEffect(() => {
     const fetchAuthor = async () => {
       if (!post.author_id) return;
       const { data, error } = await supabase
-        .from("profiles") // authors 테이블명 또는 profiles
+        .from("profiles") // 작성자 정보 테이블
         .select("nickname")
         .eq("id", post.author_id)
         .single();
+
       if (!error && data) {
         setAuthorName(data.nickname);
       }
@@ -34,31 +35,50 @@ export default function PostCard({ post }) {
     fetchAuthor();
   }, [post.author_id]);
 
-  // 상세 페이지 이동
+  // DB에서 최신 like_count 불러오기
+  useEffect(() => {
+    const fetchLikeCount = async () => {
+      const { data, error } = await supabase
+        .from("posts")
+        .select("like_count")
+        .eq("id", post.id)
+        .single();
+
+      if (!error && data) {
+        setLikeCount(data.like_count || 0);
+      }
+    };
+    fetchLikeCount();
+  }, [post.id]);
+
+  // 카드 클릭 → 상세 페이지 이동
   const handleCardClick = () => {
     navigate(`/post/${post.id}`);
   };
 
+  // 하트 클릭 → like_count 업데이트
   const handleHeartClick = async (e) => {
     e.stopPropagation();
-    if (!post) return;
-  
-    let newCount = liked ? likeCount - 1 : likeCount + 1;
-  
+
+    const newCount = liked ? likeCount - 1 : likeCount + 1;
+
     const { error } = await supabase
       .from("posts")
       .update({ like_count: newCount })
       .eq("id", post.id);
-  
+
     if (!error) {
       setLiked(!liked);
       setLikeCount(newCount);
     }
   };
-  
 
   return (
-    <div className="post-card" onClick={handleCardClick} style={{ cursor: "pointer" }}>
+    <div
+      className="post-card"
+      onClick={handleCardClick}
+      style={{ cursor: "pointer" }}
+    >
       <div className="category">{post.category}</div>
 
       <div className="header">
@@ -85,7 +105,9 @@ export default function PostCard({ post }) {
           style={{ cursor: "pointer" }}
           onClick={handleHeartClick}
         >
-          <span style={{ fontSize: "20px" }}>{liked ? "❤️" : "🤍"}</span>
+          <span style={{ fontSize: "20px" }}>
+            {liked ? "❤️" : "🤍"}
+          </span>
           <span>{likeCount}</span>
         </div>
       </div>
