@@ -111,7 +111,7 @@
 
 .back-btn {
   background: rgba(138, 43, 226, 0.08);
-  color: var(--primary-purple);
+  color: white;
 }
 
 .back-btn:hover {
