@@ -3,8 +3,9 @@ import Home from "../pages/Home";
 import CategoryPage from "../pages/CategoryPage";
 import Write from "../pages/Write";
 import Mypray from "../pages/Mypray";
-import Contemplation from "../pages/MyContemplation";
 import PostDetail from "../pages/PostDetail";
+import Comtemplation from "../pages/MyContemplation";
+import MyContemplation from "../pages/MyContemplation";
 import { useState, useEffect } from "react";
 import { supabase } from "../supabaseClient";
 
@@ -50,6 +51,10 @@ export default function AppRouter() {
         <Route index element={<Home />} />
         <Route path="category/:categoryName" element={<CategoryPage />} />
         <Route path="write" element={<Write loggedInUser={loggedInUser} />} />
+        <Route
+            path="/mycomtemplation"
+            element={<MyContemplation loggedInUser={loggedInUser} />}
+          />
       </Route>
     </Routes>
   );
