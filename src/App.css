@@ -23,14 +23,6 @@
   font-family: "Pretendard-Regular";
 }
 
-body {
-  background: linear-gradient(
-    135deg,
-    #f8f4ff 0%,
-    #fff0f8 100%
-  ); /* 연한 보라-분홍 그라데이션 */
-  color: #4a1a4a; /* 진한 보라색 텍스트 */
-}
 
 /* ===== Header / Top 영역 ===== */
 .Top {
@@ -84,7 +76,7 @@ h1{
 }
 
 .menu a:hover {
-  color: var(--accent-pink);
+  color: #e9789c;
   transform: translateY(-1px);
 }
 
@@ -102,13 +94,9 @@ h1{
 }
 
 .menu-button:hover {
-  background: linear-gradient(
-    135deg,
-    var(--accent-pink) 0%,
-    var(--primary-purple) 100%
-  );
+  background: #f2dce0;
   transform: scale(1.05) translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 20, 147, 0.4);
+  box-shadow: 0 6px 20px rgba(255, 20, 145, 0.139);
 }
 
 .menu-button:active {
@@ -149,7 +137,9 @@ h1{
 
 .card {
   position: relative;
-  height: 280px;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 3 / 4; /* 카드 비율 유지 (260x~400 비슷하게) */
   border-radius: var(--radius);
   overflow: hidden;
   background-size: cover;
@@ -246,5 +236,10 @@ h1{
 
   .prayTitle h2 {
     font-size: 20px;
+  }
+  .records-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
   }
 }
