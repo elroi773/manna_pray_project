@@ -9,7 +9,6 @@ import Login from "./Login/login";
 import Join from "./Join/join";
 import Today from "./pages/today";
 import Mypray from "./pages/Mypray";
-import MyContemplation from "./pages/MyContemplation";
 import PostDetail from "./pages/PostDetail";
 
 const clientId =
@@ -25,7 +24,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/join" element={<Join />} />
           <Route path="/today" element={<Today />} />
           <Route path="/mypray" element={<Mypray />} />
-          <Route path="/mycomtemplation" element={<MyContemplation />} />
           <Route path="/post/:id" element={<PostDetail />} />
         </Routes>
       </BrowserRouter>
