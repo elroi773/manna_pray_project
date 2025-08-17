@@ -35,8 +35,13 @@ export default function MeditationRecords() {
 
   const youtubeVideos = [
     {
+      day: "주일",
+      src: "https://www.youtube.com/embed/4RFnIPRLKmQ?list=PLdMv0JwvPIiAFwlr4nTs7hbPmgJaw9SxL",
+      title: "하나님이 하시는 일을 우리는 '기적' 이라 부른다!",
+    },
+    {
       day: "1일차",
-      src: "https://youtu.be/zjHZnoFnIvo",
+      src: "https://www.youtube.com/embed/zjHZnoFnIvo",
       title: "억울한 인생에 찾아오신 하나님!",
     },
     { day: "2일차", src: null, title: "coming soon" },
