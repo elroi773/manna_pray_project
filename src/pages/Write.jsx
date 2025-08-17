@@ -110,6 +110,7 @@ export default function Write() {
                 {i + 1}일차
               </option>
             ))}
+            <option value="주일">주일</option>
           </select>
         </label>
 
