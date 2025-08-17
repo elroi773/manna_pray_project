@@ -101,7 +101,7 @@ export default function Home() {
       <div className="Cards">
         <div className="prayTitle" {...fadeInPray}>
           <h2>최근 기도제목</h2>
-          <PostList posts={posts} /> {/* 불러온 데이터 전달 */}
+          <PostList posts={posts.filter(post => post.category !== "묵상")} />
         </div>
         <div className="prayTitle" {...fadeInMeditation}>
           <h2>최근 묵상</h2>
