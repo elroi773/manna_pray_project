@@ -36,8 +36,8 @@ export default function MeditationRecords() {
   const youtubeVideos = [
     {
       day: "1일차",
-      src: "https://www.youtube-nocookie.com/embed/Gi5pEhruJQ8?rel=0&modestbranding=1&controls=1&showinfo=0&iv_load_policy=3",
-      title: "다시 일어서는 감사",
+      src: "https://youtu.be/zjHZnoFnIvo",
+      title: "억울한 인생에 찾아오신 하나님!",
     },
     { day: "2일차", src: null, title: "coming soon" },
     { day: "3일차", src: null, title: "coming soon" },
