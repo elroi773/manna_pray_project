@@ -105,7 +105,7 @@ export default function Home() {
         </div>
         <div className="prayTitle" {...fadeInMeditation}>
           <h2>최근 묵상</h2>
-          <PostList posts={posts} /> {/* 필요 시 필터링 */}
+          <PostList posts={posts.filter(post => post.category === "묵상")} />
         </div>
         <div className="prayTitle" {...fadeInRecords}>
           <h2>나의 기록</h2>
