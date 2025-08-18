@@ -44,13 +44,18 @@ export default function MeditationRecords() {
       src: "https://www.youtube.com/embed/zjHZnoFnIvo",
       title: "억울한 인생에 찾아오신 하나님!",
     },
-    { day: "2일차", src: null, title: "coming soon" },
+    {
+      day: "2일차",
+      src: "https://www.youtube.com/embed/2L8ymRtu7Pw", 
+      title: "화가 난 인생에 찾아오신 하나님",
+    },
     { day: "3일차", src: null, title: "coming soon" },
     { day: "4일차", src: null, title: "coming soon" },
     { day: "5일차", src: null, title: "coming soon" },
     { day: "6일차", src: null, title: "coming soon" },
     { day: "7일차", src: null, title: "coming soon" },
   ];
+  
 
   const handleSelect = async (index) => {
     console.log(`=== ${youtubeVideos[index].day} 선택 ===`);
