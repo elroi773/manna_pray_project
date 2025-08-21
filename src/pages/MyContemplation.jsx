@@ -60,8 +60,16 @@ export default function MeditationRecords() {
       src: "https://www.youtube.com/embed/KPrf08xPgDE",
       title: "회복시키시는 하나님",
     },
-    { day: "4일차", src: "https://www.youtube.com/embed/Bxkdc7R7QuQ", title: "진정한 회복 벧엘로 올라가자!" },
-    { day: "5일차", src: null, title: "coming soon" },
+    {
+      day: "4일차",
+      src: "https://www.youtube.com/embed/Bxkdc7R7QuQ",
+      title: "진정한 회복 벧엘로 올라가자!",
+    },
+    {
+      day: "5일차",
+      src: "https://www.youtube.com/embed/DEKLnvEe6Ow",
+      title: "복에 집착하지 말라!",
+    },
     { day: "6일차", src: null, title: "coming soon" },
     { day: "7일차", src: null, title: "coming soon" },
   ];
