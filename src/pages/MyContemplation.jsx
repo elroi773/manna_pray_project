@@ -70,8 +70,7 @@ export default function MeditationRecords() {
       src: "https://www.youtube.com/embed/DEKLnvEe6Ow",
       title: "복에 집착하지 말라!",
     },
-    { day: "6일차", src: null, title: "coming soon" },
-    { day: "7일차", src: null, title: "coming soon" },
+    { day: "6일차", src: "https://youtu.be/embed/sqbYba3u8sU", title: "하나님을 찾으라 "매달림"" }
   ];
 
   const handleSelect = async (index) => {
