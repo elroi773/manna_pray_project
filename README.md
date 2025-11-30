@@ -26,7 +26,7 @@
 
 | 구분           | 기술/서비스              | 설명                                         |
 | -------------- | ----------------------- | -------------------------------------------- |
-| 프론트엔드     | Next.js (React 18)      | React 기반 SSR 및 SPA 기능 제공               |
+| 프론트엔드     | React 18      | React 기반 SSR 및 SPA 기능 제공               |
 | 인증           | NextAuth.js             | 구글 OAuth 로그인 처리                        |
 | 백엔드/API     | Next.js API Route       | 프론트와 통합된 서버 API 구현                  |
 | 데이터베이스   | Supabase (PostgreSQL)   | 관계형 DB + 인증 + 실시간 기능 제공            |
